@@ -1,0 +1,222 @@
+/**
+ * SimGlobe Polaris Theme
+ * Matches Shopify Admin's actual dark mode design
+ * Colors extracted from live Shopify Admin UI
+ */
+
+:root {
+  /* Shopify Admin Dark Mode - Actual Colors */
+  --sg-bg-app: #0d0d0d;
+  --sg-bg-surface: #1a1a1a;
+  --sg-bg-surface-secondary: #141414;
+  --sg-bg-surface-hover: #262626;
+  --sg-bg-surface-active: #303030;
+  --sg-bg-surface-selected: #1a2b1a;
+
+  /* Text Colors */
+  --sg-text: #e3e3e3;
+  --sg-text-secondary: #a3a3a3;
+  --sg-text-subdued: #787878;
+  --sg-text-disabled: #5c5c5c;
+
+  /* Border Colors */
+  --sg-border: #333333;
+  --sg-border-subdued: #2a2a2a;
+  --sg-border-hover: #404040;
+
+  /* Icon Colors */
+  --sg-icon: #a3a3a3;
+  --sg-icon-hover: #e3e3e3;
+
+  /* Interactive - Shopify Green/Teal */
+  --sg-interactive: #36a69a;
+  --sg-interactive-hover: #2d8f85;
+  --sg-interactive-pressed: #257a71;
+
+  /* Status Colors - Matching Shopify */
+  --sg-success: #29845a;
+  --sg-success-bg: #1a2b1a;
+  --sg-success-text: #5bb98c;
+
+  --sg-warning: #b98900;
+  --sg-warning-bg: #2b2a1a;
+  --sg-warning-text: #f5c518;
+
+  --sg-critical: #cd3a37;
+  --sg-critical-bg: #2b1a1a;
+  --sg-critical-text: #f47067;
+
+  --sg-info: #3d7be8;
+  --sg-info-bg: #1a1f2b;
+  --sg-info-text: #7eb3ff;
+
+  /* Badge Colors */
+  --sg-badge-teal-bg: #1a3a38;
+  --sg-badge-teal-text: #5ec2b8;
+
+  --sg-badge-gray-bg: #2a2a2a;
+  --sg-badge-gray-text: #a3a3a3;
+
+  /* Spacing - Shopify's 4px base */
+  --sg-space-1: 4px;
+  --sg-space-2: 8px;
+  --sg-space-3: 12px;
+  --sg-space-4: 16px;
+  --sg-space-5: 20px;
+  --sg-space-6: 24px;
+  --sg-space-8: 32px;
+
+  /* Border Radius - Shopify's system */
+  --sg-radius-sm: 6px;
+  --sg-radius-base: 8px;
+  --sg-radius-lg: 12px;
+  --sg-radius-full: 100px;
+
+  /* Shadows */
+  --sg-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --sg-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --sg-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  /* Typography - Shopify uses Inter */
+  --sg-font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --sg-font-size-xs: 12px;
+  --sg-font-size-sm: 13px;
+  --sg-font-size-base: 14px;
+  --sg-font-size-lg: 16px;
+  --sg-font-size-xl: 20px;
+
+  --sg-font-weight-regular: 400;
+  --sg-font-weight-medium: 500;
+  --sg-font-weight-semibold: 600;
+
+  --sg-line-height: 20px;
+
+  /* Transitions */
+  --sg-transition-fast: 100ms ease;
+  --sg-transition-base: 150ms ease;
+
+  /* Z-index */
+  --sg-z-panel: 100;
+  --sg-z-modal: 400;
+  --sg-z-toast: 500;
+}
+
+/* Base reset for SimGlobe elements */
+[data-simglobe],
+[data-simglobe] * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+[data-simglobe] {
+  font-family: var(--sg-font-family);
+  font-size: var(--sg-font-size-base);
+  line-height: var(--sg-line-height);
+  color: var(--sg-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Button Styles - Matching Shopify */
+.simglobe-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sg-space-2);
+  height: 32px;
+  padding: 0 var(--sg-space-3);
+  border: none;
+  border-radius: var(--sg-radius-sm);
+  font-family: var(--sg-font-family);
+  font-size: var(--sg-font-size-sm);
+  font-weight: var(--sg-font-weight-medium);
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--sg-transition-fast), border-color var(--sg-transition-fast);
+  white-space: nowrap;
+}
+
+.simglobe-btn--primary {
+  background: var(--sg-interactive);
+  color: #ffffff;
+}
+
+.simglobe-btn--primary:hover {
+  background: var(--sg-interactive-hover);
+}
+
+.simglobe-btn--primary:active {
+  background: var(--sg-interactive-pressed);
+}
+
+.simglobe-btn--secondary {
+  background: var(--sg-bg-surface);
+  border: 1px solid var(--sg-border);
+  color: var(--sg-text);
+}
+
+.simglobe-btn--secondary:hover {
+  background: var(--sg-bg-surface-hover);
+  border-color: var(--sg-border-hover);
+}
+
+.simglobe-btn--plain {
+  background: transparent;
+  color: var(--sg-text-secondary);
+  padding: var(--sg-space-1);
+  height: auto;
+}
+
+.simglobe-btn--plain:hover {
+  color: var(--sg-text);
+  background: var(--sg-bg-surface-hover);
+}
+
+/* Spinner */
+.simglobe-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--sg-border);
+  border-top-color: var(--sg-interactive);
+  border-radius: 50%;
+  animation: sg-spin 0.6s linear infinite;
+}
+
+@keyframes sg-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Loading State */
+.simglobe-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sg-space-3);
+  padding: var(--sg-space-8);
+  color: var(--sg-text-subdued);
+  font-size: var(--sg-font-size-sm);
+}
+
+/* Error State */
+.simglobe-error {
+  text-align: center;
+  padding: var(--sg-space-6);
+}
+
+.simglobe-error-detail {
+  font-size: var(--sg-font-size-xs);
+  color: var(--sg-critical-text);
+  margin-top: var(--sg-space-2);
+}
+
+/* Links */
+[data-simglobe] a {
+  color: var(--sg-info-text);
+  text-decoration: none;
+}
+
+[data-simglobe] a:hover {
+  text-decoration: underline;
+}

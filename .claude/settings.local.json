@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(npm init @shopify/app@latest)",
+      "WebFetch(domain:admin.shopify.com)",
+      "WebFetch(domain:polaris.shopify.com)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

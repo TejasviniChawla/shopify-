@@ -1,0 +1,1001 @@
+/**
+ * SimGlobe Component Styles
+ * Designed to blend seamlessly with Shopify Admin UI
+ */
+
+/* ========================
+   SIDEBAR NAVIGATION ITEM
+   Matches Shopify's native nav items exactly
+   ======================== */
+
+/* Override any custom styling - inherit from Shopify */
+[data-simglobe="sidebar"] {
+  /* Let Shopify's classes handle the styling */
+}
+
+/* Only style our custom link if Shopify classes aren't applied */
+.simglobe-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: var(--sg-text-secondary, #a3a3a3);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  transition: background 100ms ease, color 100ms ease;
+  cursor: pointer;
+}
+
+.simglobe-nav-link:hover {
+  background: var(--sg-bg-surface-hover, #262626);
+  color: var(--sg-text, #e3e3e3);
+  text-decoration: none;
+}
+
+.simglobe-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.simglobe-nav-icon svg {
+  width: 20px;
+  height: 20px;
+  color: inherit;
+}
+
+.simglobe-nav-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Badge - matches Shopify's notification badges */
+.simglobe-nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: var(--sg-interactive, #36a69a);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 9px;
+  line-height: 1;
+}
+
+/* ========================
+   SIDE PANEL
+   Matches Shopify's drawer/panel style
+   ======================== */
+
+.simglobe-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  height: 100vh;
+  background: var(--sg-bg-app, #0d0d0d);
+  border-left: 1px solid var(--sg-border-subdued, #2a2a2a);
+  z-index: var(--sg-z-panel, 100);
+  transform: translateX(100%);
+  transition: transform 200ms ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.simglobe-panel--visible {
+  transform: translateX(0);
+}
+
+/* Panel Header */
+.simglobe-panel-header {
+  display: none; /* Hide the custom header, content speaks for itself */
+}
+
+/* Panel Content */
+.simglobe-panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* Custom scrollbar matching Shopify */
+.simglobe-panel-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.simglobe-panel-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.simglobe-panel-content::-webkit-scrollbar-thumb {
+  background: var(--sg-border, #333333);
+  border-radius: 4px;
+}
+
+.simglobe-panel-content::-webkit-scrollbar-thumb:hover {
+  background: var(--sg-border-hover, #404040);
+}
+
+/* Panel Sections */
+.simglobe-panel-section {
+  margin-bottom: 24px;
+}
+
+.simglobe-panel-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Section Headers - Shopify style */
+.simglobe-panel-section h3,
+.simglobe-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sg-text-subdued, #787878);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+/* Panel Actions (bottom button) */
+.simglobe-panel-actions {
+  padding: 16px;
+  border-top: 1px solid var(--sg-border-subdued, #2a2a2a);
+  background: var(--sg-bg-app, #0d0d0d);
+  position: sticky;
+  bottom: 0;
+}
+
+.simglobe-panel-actions .simglobe-btn {
+  width: 100%;
+}
+
+/* ========================
+   VOICE BRIEFING / TRANSCRIPT
+   ======================== */
+
+.voice-briefing {
+  margin-bottom: 16px;
+}
+
+/* Collapsible Transcript - Shopify disclosure style */
+.simglobe-transcript-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  color: var(--sg-text-secondary, #a3a3a3);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.simglobe-transcript-toggle:hover {
+  color: var(--sg-text, #e3e3e3);
+}
+
+.simglobe-transcript-toggle svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 150ms ease;
+}
+
+.simglobe-transcript-toggle[aria-expanded="true"] svg {
+  transform: rotate(90deg);
+}
+
+.simglobe-transcript-content {
+  padding: 12px;
+  background: var(--sg-bg-surface-secondary, #141414);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--sg-text-secondary, #a3a3a3);
+  margin-top: 8px;
+}
+
+/* Voice player hidden - using collapsible text instead */
+.voice-briefing-player,
+.voice-briefing audio {
+  display: none;
+}
+
+.voice-transcript {
+  margin-top: 0;
+}
+
+.voice-transcript summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+  color: var(--sg-text-secondary, #a3a3a3);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+}
+
+.voice-transcript summary::-webkit-details-marker {
+  display: none;
+}
+
+.voice-transcript summary::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 6px;
+  border-color: transparent transparent transparent currentColor;
+  transition: transform 150ms ease;
+}
+
+.voice-transcript[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.voice-transcript summary:hover {
+  color: var(--sg-text, #e3e3e3);
+}
+
+.voice-transcript p {
+  padding: 12px;
+  background: var(--sg-bg-surface-secondary, #141414);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--sg-text-secondary, #a3a3a3);
+  margin-top: 8px;
+}
+
+/* ========================
+   RISK CARDS
+   Matching Shopify's card/list item style
+   ======================== */
+
+.risk-list,
+.simglobe-risk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Individual Risk Card */
+.market-risk-card,
+.simglobe-risk-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--sg-bg-surface, #1a1a1a);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.market-risk-card:hover,
+.simglobe-risk-card:hover {
+  background: var(--sg-bg-surface-hover, #262626);
+}
+
+/* Risk Card Header (probability + title) */
+.risk-card-header,
+.simglobe-risk-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.risk-card-title,
+.simglobe-risk-title {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--sg-text, #e3e3e3);
+  line-height: 1.4;
+}
+
+/* Risk Card Details Row */
+.risk-card-details,
+.simglobe-risk-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.risk-card-category,
+.simglobe-risk-category {
+  font-size: 12px;
+  color: var(--sg-text-subdued, #787878);
+  padding: 2px 8px;
+  background: var(--sg-badge-gray-bg, #2a2a2a);
+  border-radius: 4px;
+}
+
+.risk-card-volume,
+.simglobe-risk-volume {
+  font-size: 12px;
+  color: var(--sg-text-subdued, #787878);
+  margin-left: auto;
+}
+
+/* ========================
+   BADGES
+   ======================== */
+
+/* Probability Badge - Teal */
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 24px;
+  padding: 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Default teal badge */
+.risk-badge {
+  background: var(--sg-badge-teal-bg, #1a3a38);
+  color: var(--sg-badge-teal-text, #5ec2b8);
+}
+
+/* High probability (>=70%) */
+.risk-badge--high {
+  background: #3a2424;
+  color: #f47067;
+}
+
+/* Medium probability (40-69%) */
+.risk-badge--medium {
+  background: #3a3424;
+  color: #f5c518;
+}
+
+/* Low probability (<40%) */
+.risk-badge--low {
+  background: #1a3a38;
+  color: #5ec2b8;
+}
+
+/* Impact Badges */
+.impact-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+
+.impact--high,
+.impact-badge--high {
+  background: #3a2424;
+  color: #f47067;
+}
+
+.impact--medium,
+.impact-badge--medium {
+  background: #3a3424;
+  color: #f5c518;
+}
+
+.impact--low,
+.impact-badge--low {
+  background: #243a2a;
+  color: #5bb98c;
+}
+
+/* ========================
+   MODAL
+   ======================== */
+
+.simglobe-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--sg-z-modal, 400);
+  padding: 24px;
+}
+
+.simglobe-modal {
+  width: 100%;
+  max-width: 420px;
+  max-height: calc(100vh - 48px);
+  background: var(--sg-bg-surface, #1a1a1a);
+  border-radius: 12px;
+  box-shadow: var(--sg-shadow-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--sg-border-subdued, #2a2a2a);
+}
+
+.modal-header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--sg-text, #e3e3e3);
+  margin: 0;
+}
+
+.modal-close-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--sg-text-subdued, #787878);
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.modal-close-btn:hover {
+  background: var(--sg-bg-surface-hover, #262626);
+  color: var(--sg-text, #e3e3e3);
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-actions {
+  padding: 16px 20px;
+  border-top: 1px solid var(--sg-border-subdued, #2a2a2a);
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* Hedge Modal Specific */
+.hedge-details {
+  background: var(--sg-bg-surface-secondary, #141414);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.hedge-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.hedge-detail-row:not(:last-child) {
+  border-bottom: 1px solid var(--sg-border-subdued, #2a2a2a);
+}
+
+.hedge-label {
+  font-size: 13px;
+  color: var(--sg-text-subdued, #787878);
+}
+
+.hedge-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--sg-text, #e3e3e3);
+}
+
+.hedge-value.hedge-amount {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--sg-interactive, #36a69a);
+}
+
+.hedge-qr-section {
+  text-align: center;
+  padding: 24px;
+  background: var(--sg-bg-surface-secondary, #141414);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.hedge-qr-code {
+  max-width: 180px;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 8px;
+}
+
+.hedge-qr-placeholder {
+  padding: 32px;
+  color: var(--sg-text-subdued, #787878);
+}
+
+.hedge-scan-text {
+  font-size: 12px;
+  color: var(--sg-text-subdued, #787878);
+  margin-top: 12px;
+}
+
+.hedge-confirm-btn {
+  width: 100%;
+}
+
+.hedge-status {
+  text-align: center;
+  font-size: 13px;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 12px;
+}
+
+.hedge-status--success {
+  background: var(--sg-success-bg, #1a2b1a);
+  color: var(--sg-success-text, #5bb98c);
+}
+
+.hedge-status--error {
+  background: var(--sg-critical-bg, #2b1a1a);
+  color: var(--sg-critical-text, #f47067);
+}
+
+/* ========================
+   TOAST
+   ======================== */
+
+.simglobe-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--sg-z-toast, 500);
+  animation: sg-toast-in 200ms ease;
+}
+
+.simglobe-toast--hiding {
+  animation: sg-toast-out 200ms ease forwards;
+}
+
+@keyframes sg-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes sg-toast-out {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px);
+  }
+}
+
+.simglobe-toast-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--sg-bg-surface, #1a1a1a);
+  border: 1px solid var(--sg-border, #333333);
+  border-radius: 8px;
+  box-shadow: var(--sg-shadow-lg);
+  font-size: 13px;
+  color: var(--sg-text, #e3e3e3);
+}
+
+.simglobe-toast--success .simglobe-toast-content {
+  border-color: var(--sg-success, #29845a);
+}
+
+.simglobe-toast--error .simglobe-toast-content {
+  border-color: var(--sg-critical, #cd3a37);
+}
+
+/* ========================
+   HOME WIDGET
+   ======================== */
+
+.simglobe-home-widget {
+  margin: 16px 0;
+}
+
+.simglobe-card {
+  background: var(--sg-bg-surface, #1a1a1a);
+  border: 1px solid var(--sg-border-subdued, #2a2a2a);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.simglobe-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--sg-border-subdued, #2a2a2a);
+}
+
+.simglobe-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.simglobe-card-icon {
+  color: var(--sg-interactive, #36a69a);
+}
+
+.simglobe-card-title h2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sg-text, #e3e3e3);
+  margin: 0;
+}
+
+.simglobe-refresh-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--sg-text-subdued, #787878);
+  cursor: pointer;
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.simglobe-refresh-btn:hover {
+  background: var(--sg-bg-surface-hover, #262626);
+  color: var(--sg-text, #e3e3e3);
+}
+
+.simglobe-card-content {
+  padding: 16px;
+}
+
+.simglobe-card-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--sg-border-subdued, #2a2a2a);
+}
+
+.simglobe-view-dashboard {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sg-info-text, #7eb3ff);
+}
+
+.simglobe-view-dashboard:hover {
+  text-decoration: underline;
+}
+
+/* ========================
+   CAMPAIGNS BANNER
+   ======================== */
+
+.simglobe-campaigns-banner {
+  margin: 16px 0;
+}
+
+.simglobe-banner {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.simglobe-banner--loading {
+  background: var(--sg-bg-surface, #1a1a1a);
+  border: 1px solid var(--sg-border-subdued, #2a2a2a);
+}
+
+.simglobe-banner--loading .simglobe-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  color: var(--sg-text-subdued, #787878);
+}
+
+.simglobe-banner--critical {
+  background: var(--sg-critical-bg, #2b1a1a);
+  border: 1px solid #4a2828;
+}
+
+.simglobe-banner--warning {
+  background: var(--sg-warning-bg, #2b2a1a);
+  border: 1px solid #4a4828;
+}
+
+.simglobe-banner--success {
+  background: var(--sg-success-bg, #1a2b1a);
+  border: 1px solid #284a28;
+}
+
+.simglobe-banner--info {
+  background: var(--sg-info-bg, #1a1f2b);
+  border: 1px solid #28384a;
+}
+
+.simglobe-banner-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+}
+
+.simglobe-banner-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.simglobe-banner--critical .simglobe-banner-icon {
+  color: var(--sg-critical-text, #f47067);
+}
+
+.simglobe-banner--warning .simglobe-banner-icon {
+  color: var(--sg-warning-text, #f5c518);
+}
+
+.simglobe-banner--success .simglobe-banner-icon {
+  color: var(--sg-success-text, #5bb98c);
+}
+
+.simglobe-banner-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.simglobe-banner-text h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sg-text, #e3e3e3);
+  margin: 0 0 4px 0;
+}
+
+.simglobe-banner-text p {
+  font-size: 13px;
+  color: var(--sg-text-secondary, #a3a3a3);
+  margin: 0;
+}
+
+.simglobe-recommendations-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0 0;
+}
+
+.simglobe-recommendation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--sg-border-subdued, #2a2a2a);
+  gap: 12px;
+}
+
+.simglobe-recommendation:last-child {
+  border-bottom: none;
+}
+
+.simglobe-rec-action {
+  font-size: 13px;
+  color: var(--sg-text, #e3e3e3);
+}
+
+.simglobe-rec-impact {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--sg-interactive, #36a69a);
+  white-space: nowrap;
+}
+
+.simglobe-banner-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.simglobe-banner-dismiss {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--sg-text-subdued, #787878);
+  cursor: pointer;
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.simglobe-banner-dismiss:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--sg-text, #e3e3e3);
+}
+
+/* ========================
+   PRODUCT ACTION
+   ======================== */
+
+.simglobe-product-action {
+  margin-right: 8px;
+}
+
+/* Product Risk Modal */
+.product-risk-content {
+  padding: 0;
+}
+
+.product-risk-summary {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--sg-border-subdued, #2a2a2a);
+}
+
+.risk-score-circle {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.risk-score-circle.risk-score--high {
+  background: #3a2424;
+  border: 2px solid #f47067;
+}
+
+.risk-score-circle.risk-score--medium {
+  background: #3a3424;
+  border: 2px solid #f5c518;
+}
+
+.risk-score-circle.risk-score--low {
+  background: #1a3a38;
+  border: 2px solid #5ec2b8;
+}
+
+.risk-score-value {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.risk-score-label {
+  font-size: 10px;
+  color: var(--sg-text-subdued, #787878);
+  margin-top: 2px;
+}
+
+.risk-summary-text {
+  flex: 1;
+}
+
+.risk-summary-text p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--sg-text-secondary, #a3a3a3);
+  line-height: 1.5;
+}
+
+.product-risk-breakdown h3,
+.product-risk-recommendation h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sg-text-subdued, #787878);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.risk-factors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.risk-factor-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--sg-bg-surface-secondary, #141414);
+  border-radius: 8px;
+}
+
+.risk-factor-title {
+  flex: 1;
+  font-size: 13px;
+  color: var(--sg-text, #e3e3e3);
+}
+
+.risk-factor-impact {
+  font-size: 12px;
+  color: var(--sg-text-subdued, #787878);
+}
+
+.hedge-recommendation-box {
+  padding: 16px;
+  background: var(--sg-badge-teal-bg, #1a3a38);
+  border: 1px solid #2a4a48;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.hedge-recommendation-box .hedge-amount {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--sg-badge-teal-text, #5ec2b8);
+}
+
+.hedge-recommendation-box p {
+  margin: 6px 0 0 0;
+  font-size: 12px;
+  color: var(--sg-text-subdued, #787878);
+}
+
+.product-risk-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.product-risk-actions .simglobe-btn {
+  flex: 1;
+}

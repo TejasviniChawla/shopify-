@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "SimGlobe - Shopify Market Oracle",
+  "version": "1.0.0",
+  "description": "Hedge your e-commerce business with prediction markets",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": [
+    "*://admin.shopify.com/*",
+    "http://localhost:3000/*",
+    "https://api.simglobe.io/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://admin.shopify.com/*"],
+      "js": [
+        "utils/dom-helpers.js",
+        "utils/api-client.js",
+        "components/RiskBadge.js",
+        "components/MarketRiskCard.js",
+        "components/VoiceBriefing.js",
+        "components/HedgeModal.js",
+        "content/sidebar-injector.js",
+        "content/home-widget.js",
+        "content/campaigns-widget.js",
+        "content/product-action.js",
+        "content/injector.js"
+      ],
+      "css": ["styles/polaris-theme.css", "styles/components.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "48": "assets/icon-48.png",
+      "128": "assets/icon-128.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["components/*", "assets/*"],
+      "matches": ["*://admin.shopify.com/*"]
+    }
+  ],
+  "icons": {
+    "16": "assets/icon-16.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  }
+}

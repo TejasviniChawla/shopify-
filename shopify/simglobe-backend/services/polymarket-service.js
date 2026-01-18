@@ -163,69 +163,90 @@ class PolymarketService {
 
   /**
    * Get mock market data for development/demo
+   * Small business focused events with clear merchant impact
    * @returns {Array} Mock markets
    */
   getMockMarkets() {
     return [
       {
-        id: 'mock-port-strike',
-        question: 'Will there be a port strike at LA/Long Beach in Q1 2026?',
-        description: 'This market resolves to Yes if there is any work stoppage at the Port of Los Angeles or Port of Long Beach lasting more than 24 hours.',
-        outcomePrices: ['0.78', '0.22'],
+        id: 'shipping-delay-feb',
+        question: 'Shipping delays over 7 days from Asia this month?',
+        description: 'Major shipping delays from Asian suppliers could affect your inventory arrival times and customer delivery promises.',
+        outcomePrices: ['0.72', '0.28'],
         outcomes: ['Yes', 'No'],
-        category: 'Economics',
+        category: 'Shipping',
+        volume: '185000',
+        endDate: '2026-01-31T23:59:59Z'
+      },
+      {
+        id: 'usps-rate-hike',
+        question: 'USPS shipping rate increase before Valentine\'s Day?',
+        description: 'Postal service may raise rates before the February holiday rush, affecting your shipping costs and margins.',
+        outcomePrices: ['0.65', '0.35'],
+        outcomes: ['Yes', 'No'],
+        category: 'Shipping',
+        volume: '92000',
+        endDate: '2026-02-01T23:59:59Z'
+      },
+      {
+        id: 'consumer-spending-drop',
+        question: 'Consumer spending drops 5%+ in February?',
+        description: 'Post-holiday spending fatigue could reduce customer purchases. Consider promotional strategies.',
+        outcomePrices: ['0.58', '0.42'],
+        outcomes: ['Yes', 'No'],
+        category: 'Economic',
+        volume: '156000',
+        endDate: '2026-02-28T23:59:59Z'
+      },
+      {
+        id: 'china-tariff-increase',
+        question: 'New 15% tariffs on Chinese imports by March?',
+        description: 'Proposed tariff increases would raise your product costs if you source from China. Pre-order inventory now.',
+        outcomePrices: ['0.48', '0.52'],
+        outcomes: ['Yes', 'No'],
+        category: 'Tariffs',
         volume: '245000',
-        endDate: '2026-03-31T23:59:59Z'
+        endDate: '2026-03-15T23:59:59Z'
       },
       {
-        id: 'mock-inflation',
-        question: 'Will US inflation exceed 4% in January 2026?',
-        description: 'This market resolves to Yes if the Bureau of Labor Statistics reports CPI inflation above 4% year-over-year for January 2026.',
-        outcomePrices: ['0.45', '0.55'],
+        id: 'cotton-price-surge',
+        question: 'Cotton prices rise 20%+ by Spring?',
+        description: 'If you sell apparel or textiles, cotton price spikes will squeeze your margins. Lock in supplier pricing.',
+        outcomePrices: ['0.41', '0.59'],
         outcomes: ['Yes', 'No'],
-        category: 'Economics',
-        volume: '180000',
-        endDate: '2026-02-15T23:59:59Z'
+        category: 'Economic',
+        volume: '78000',
+        endDate: '2026-04-01T23:59:59Z'
       },
       {
-        id: 'mock-supply-chain',
-        question: 'Will there be major supply chain disruptions in Q1 2026?',
-        description: 'This market resolves to Yes if there are significant global supply chain disruptions affecting major shipping routes.',
-        outcomePrices: ['0.62', '0.38'],
+        id: 'valentines-rush',
+        question: 'Valentine\'s gift category sales surge 30%+?',
+        description: 'Strong Valentine\'s demand expected. Stock up on gift-able items and prepare marketing campaigns.',
+        outcomePrices: ['0.76', '0.24'],
         outcomes: ['Yes', 'No'],
-        category: 'Business',
-        volume: '120000',
-        endDate: '2026-03-31T23:59:59Z'
+        category: 'Economic',
+        volume: '134000',
+        endDate: '2026-02-14T23:59:59Z'
       },
       {
-        id: 'mock-fed-rate',
-        question: 'Will the Fed raise interest rates in March 2026?',
-        description: 'This market resolves to Yes if the Federal Reserve increases the federal funds rate at their March 2026 meeting.',
-        outcomePrices: ['0.35', '0.65'],
+        id: 'payment-processor-outage',
+        question: 'Major payment processor outage this month?',
+        description: 'Payment disruptions could block customer checkouts. Have backup payment options ready.',
+        outcomePrices: ['0.23', '0.77'],
         outcomes: ['Yes', 'No'],
-        category: 'Finance',
-        volume: '350000',
-        endDate: '2026-03-20T23:59:59Z'
+        category: 'Economic',
+        volume: '45000',
+        endDate: '2026-01-31T23:59:59Z'
       },
       {
-        id: 'mock-tariffs',
-        question: 'Will new tariffs be imposed on Chinese goods in 2026?',
-        description: 'This market resolves to Yes if the US government announces new tariffs on goods imported from China during 2026.',
-        outcomePrices: ['0.55', '0.45'],
+        id: 'fuel-cost-spike',
+        question: 'Fuel prices spike 15%+ affecting delivery costs?',
+        description: 'Rising fuel costs increase your shipping expenses. Consider adjusting free shipping thresholds.',
+        outcomePrices: ['0.52', '0.48'],
         outcomes: ['Yes', 'No'],
-        category: 'Politics',
-        volume: '95000',
-        endDate: '2026-12-31T23:59:59Z'
-      },
-      {
-        id: 'mock-oil-price',
-        question: 'Will oil prices exceed $100/barrel in Q1 2026?',
-        description: 'This market resolves to Yes if WTI crude oil closes above $100 per barrel at any point in Q1 2026.',
-        outcomePrices: ['0.28', '0.72'],
-        outcomes: ['Yes', 'No'],
-        category: 'Economics',
-        volume: '210000',
-        endDate: '2026-03-31T23:59:59Z'
+        category: 'Shipping',
+        volume: '167000',
+        endDate: '2026-02-28T23:59:59Z'
       }
     ];
   }

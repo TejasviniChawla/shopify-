@@ -1,11 +1,11 @@
 /**
- * SimGlobe API Client
+ * Predictify API Client
  * Handles all communication with the backend API
  */
 
 const API_BASE = 'http://localhost:4000/api';
 
-const SimGlobeApi = {
+const PredictifyApi = {
   /**
    * Get cached data from chrome.storage.local
    * @param {string} key - Cache key
@@ -64,7 +64,7 @@ const SimGlobeApi = {
 
       return await response.json();
     } catch (error) {
-      console.error('SimGlobe API error:', error);
+      console.error('Predictify API error:', error);
       throw error;
     }
   },
@@ -187,4 +187,4 @@ const SimGlobeApi = {
 };
 
 // Make available globally
-window.SimGlobeApi = SimGlobeApi;
+window.PredictifyApi = PredictifyApi;

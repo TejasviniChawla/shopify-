@@ -4,10 +4,10 @@
  */
 
 async function injectProductAction() {
-  const { waitForElement, isAlreadyInjected, markAsInjected } = window.SimGlobeDom;
+  const { waitForElement, isAlreadyInjected, markAsInjected } = window.PredictifyDom;
 
   if (isAlreadyInjected('product-action')) {
-    console.log('SimGlobe: Product action already injected');
+    console.log('Predictify: Product action already injected');
     return;
   }
 
@@ -32,7 +32,7 @@ async function injectProductAction() {
     }
 
     if (!actionsContainer) {
-      console.log('SimGlobe: Could not find product actions container');
+      console.log('Predictify: Could not find product actions container');
       return;
     }
 
@@ -51,10 +51,10 @@ async function injectProductAction() {
       actionsContainer.appendChild(actionButton);
     }
 
-    console.log('SimGlobe: Product action injected successfully');
+    console.log('Predictify: Product action injected successfully');
 
   } catch (error) {
-    console.error('SimGlobe: Error injecting product action:', error);
+    console.error('Predictify: Error injecting product action:', error);
   }
 }
 
@@ -103,7 +103,7 @@ function extractProductInfo() {
 }
 
 async function showProductRiskModal(productInfo) {
-  const { waitForElement } = window.SimGlobeDom;
+  const { waitForElement } = window.PredictifyDom;
 
   // Remove any existing modal
   const existing = document.querySelector('[data-simglobe="product-risk-modal"]');
@@ -153,19 +153,42 @@ async function showProductRiskModal(productInfo) {
 
 async function loadProductRiskData(container, productInfo) {
   try {
-    const [risks, analysis] = await Promise.all([
-      window.SimGlobeApi.getRisks(),
-      window.SimGlobeApi.analyzeStore({
-        storeId: extractStoreId(),
-        productIds: [productInfo.id],
-        page: 'product'
-      })
-    ]);
+    const risks = await window.PredictifyApi.getRisks();
 
-    const { createRiskBadge, createImpactBadge } = window.SimGlobeComponents;
+    const { createRiskBadge, createImpactBadge } = window.PredictifyComponents;
 
-    // Filter risks relevant to products (supply chain, shipping, etc.)
-    const relevantRisks = risks.markets || [];
+    // Use the smart linker to find relevant risks for this product
+    let relevantRisks = [];
+    let analysis = { riskScore: 50, reasoning: 'Analyzing...', suggestedHedge: 500 };
+    
+    if (window.ProductRiskLinker) {
+      const productData = {
+        ...productInfo,
+        category: inferProductCategory(productInfo.name),
+        description: productInfo.name // Use name as description for matching
+      };
+      
+      const matches = window.ProductRiskLinker.findRisksForProduct(productData, risks.markets || []);
+      relevantRisks = matches.map(m => ({
+        ...m.risk,
+        matchReasons: m.matchReasons,
+        matchScore: m.score
+      }));
+      
+      // Calculate risk score based on matches
+      if (relevantRisks.length > 0) {
+        const avgProb = relevantRisks.reduce((sum, r) => sum + parseFloat(r.probability), 0) / relevantRisks.length;
+        analysis.riskScore = Math.round(avgProb * 100);
+        analysis.reasoning = `This product is exposed to ${relevantRisks.length} market risk${relevantRisks.length > 1 ? 's' : ''} based on its supply chain.`;
+        analysis.suggestedHedge = window.ProductRiskLinker.calculateSuggestedHedge(productData, matches);
+      } else {
+        analysis.riskScore = 25;
+        analysis.reasoning = 'No significant market risks detected for this product.';
+        analysis.suggestedHedge = 0;
+      }
+    } else {
+      relevantRisks = risks.markets || [];
+    }
 
     container.innerHTML = `
       <div class="product-risk-content">
@@ -210,23 +233,65 @@ async function loadProductRiskData(container, productInfo) {
       factor.className = 'risk-factor-item';
 
       const badge = createRiskBadge(risk.probability);
+      
+      const infoWrapper = document.createElement('div');
+      infoWrapper.className = 'risk-factor-info';
+      
       const title = document.createElement('span');
       title.className = 'risk-factor-title';
       title.textContent = risk.title;
+      infoWrapper.appendChild(title);
+
+      // Show match reasons if available
+      if (risk.matchReasons && risk.matchReasons.length > 0) {
+        const matchReason = document.createElement('span');
+        matchReason.className = 'risk-factor-match';
+        matchReason.textContent = risk.matchReasons[0]; // Show first reason
+        infoWrapper.appendChild(matchReason);
+      }
 
       const impact = document.createElement('span');
       impact.className = 'risk-factor-impact';
       impact.textContent = getImpactDescription(risk);
 
+      // Add a link back to Predictify for this risk
+      const viewLink = document.createElement('button');
+      viewLink.className = 'risk-factor-view-btn';
+      viewLink.innerHTML = `
+        <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+        </svg>
+      `;
+      viewLink.title = 'View in Predictify';
+      viewLink.addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.querySelector('[data-simglobe="product-risk-modal"]')?.remove();
+        // Navigate to Predictify and highlight this risk
+        const { showPredictifyMainPage } = window.PredictifyInjectors || {};
+        if (showPredictifyMainPage) {
+          showPredictifyMainPage();
+          // After a short delay, scroll to and highlight the risk
+          setTimeout(() => {
+            const riskRow = document.querySelector(`[data-market-id="${risk.id}"]`);
+            if (riskRow) {
+              riskRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              riskRow.classList.add('simglobe-highlight');
+              setTimeout(() => riskRow.classList.remove('simglobe-highlight'), 2000);
+            }
+          }, 500);
+        }
+      });
+
       factor.appendChild(badge);
-      factor.appendChild(title);
+      factor.appendChild(infoWrapper);
       factor.appendChild(impact);
+      factor.appendChild(viewLink);
       factorsList.appendChild(factor);
     });
 
     // Event handlers
     container.querySelector('.hedge-product-btn').addEventListener('click', () => {
-      const { showHedgeModal } = window.SimGlobeComponents;
+      const { showHedgeModal } = window.PredictifyComponents;
       showHedgeModal({
         market: `${productInfo.name} Supply Risk`,
         marketId: `product-${productInfo.id}`,
@@ -269,6 +334,11 @@ function getRiskLevel(score) {
 }
 
 function getImpactDescription(risk) {
+  if (window.ProductRiskLinker) {
+    // Use smart descriptions based on category
+    return window.ProductRiskLinker.getImpactDescription({}, risk);
+  }
+  
   const prob = parseFloat(risk.probability);
   if (prob >= 0.7) {
     return '+2-3 weeks shipping delay';
@@ -278,6 +348,31 @@ function getImpactDescription(risk) {
   return 'Minimal expected impact';
 }
 
+function inferProductCategory(productName) {
+  const name = productName.toLowerCase();
+  
+  if (name.includes('shoe') || name.includes('sneaker') || name.includes('nike') || name.includes('adidas') || name.includes('air force')) {
+    return 'Sneakers';
+  }
+  if (name.includes('t-shirt') || name.includes('tshirt') || name.includes('shirt')) {
+    return 'T-Shirts';
+  }
+  if (name.includes('cotton')) {
+    return 'T-Shirts';
+  }
+  if (name.includes('jean') || name.includes('pant') || name.includes('trouser')) {
+    return 'Apparel';
+  }
+  if (name.includes('jacket') || name.includes('coat') || name.includes('hoodie')) {
+    return 'Apparel';
+  }
+  if (name.includes('phone') || name.includes('laptop') || name.includes('computer')) {
+    return 'Electronics';
+  }
+  
+  return 'General';
+}
+
 // Make available globally
-window.SimGlobeInjectors = window.SimGlobeInjectors || {};
-window.SimGlobeInjectors.injectProductAction = injectProductAction;
+window.PredictifyInjectors = window.PredictifyInjectors || {};
+window.PredictifyInjectors.injectProductAction = injectProductAction;

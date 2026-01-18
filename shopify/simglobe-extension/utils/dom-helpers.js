@@ -1,8 +1,8 @@
 /**
- * DOM Helper utilities for SimGlobe extension
+ * DOM Helper utilities for Predictify extension
  */
 
-const SimGlobeDom = {
+const PredictifyDom = {
   /**
    * Wait for an element to appear in the DOM
    * @param {string} selector - CSS selector
@@ -127,7 +127,7 @@ const SimGlobeDom = {
   },
 
   /**
-   * Check if SimGlobe is already injected on the page
+   * Check if Predictify is already injected on the page
    * @param {string} identifier - Unique identifier for the injection
    * @returns {boolean}
    */
@@ -136,7 +136,7 @@ const SimGlobeDom = {
   },
 
   /**
-   * Mark an element as injected by SimGlobe
+   * Mark an element as injected by Predictify
    * @param {Element} element - Element to mark
    * @param {string} identifier - Unique identifier
    */
@@ -145,7 +145,7 @@ const SimGlobeDom = {
   },
 
   /**
-   * Remove all SimGlobe injections
+   * Remove all Predictify injections
    */
   removeAllInjections() {
     document.querySelectorAll('[data-simglobe]').forEach(el => el.remove());
@@ -183,4 +183,4 @@ const SimGlobeDom = {
 };
 
 // Make available globally
-window.SimGlobeDom = SimGlobeDom;
+window.PredictifyDom = PredictifyDom;

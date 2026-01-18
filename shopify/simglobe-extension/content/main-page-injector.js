@@ -5,7 +5,7 @@
  */
 
 async function showSimGlobeMainPage() {
-  const { waitForElement, markAsInjected } = window.SimGlobeDom;
+  const { waitForElement, markAsInjected } = window.PredictifyDom;
 
   try {
     // Find the main content area (where Shopify pages render their content)
@@ -48,6 +48,9 @@ async function showSimGlobeMainPage() {
     // Insert at the beginning of main content
     mainContent.insertBefore(simglobePage, mainContent.firstChild);
 
+    // Scroll the page to top
+    simglobePage.scrollTop = 0;
+
     // Load data
     await loadMainPageContent(simglobePage);
 
@@ -82,7 +85,8 @@ function showOriginalContent(mainContent) {
   if (simglobePage) {
     simglobePage.style.display = 'none';
   }
-}
+
+  }
 
 function createSimGlobeMainPage() {
   const page = document.createElement('div');
@@ -99,7 +103,7 @@ function createSimGlobeMainPage() {
                 <path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm7.92 9H14.1c-.12-2.66-.82-5.05-1.9-6.77A8.02 8.02 0 0117.92 9zm-9.42 0H8.1c.13-2.32.73-4.38 1.68-5.83a.5.5 0 01.44 0c.95 1.45 1.55 3.51 1.68 5.83h-3.4zm-2.4 0H2.08A8.02 8.02 0 017.8 2.23C6.72 3.95 6.02 6.34 5.9 9h.1zm-.1 2H2.08A8.02 8.02 0 007.8 17.77C6.72 16.05 6.02 13.66 5.9 11zm2.6 0h3.4c-.13 2.32-.73 4.38-1.68 5.83a.5.5 0 01-.44 0C9.23 15.38 8.63 13.32 8.5 11zm5.5 0h3.92a8.02 8.02 0 01-5.72 6.77c1.08-1.72 1.78-4.11 1.9-6.77h-.1z"/>
               </svg>
             </span>
-            <h1 class="simglobe-page-title">SimGlobe</h1>
+            <h1 class="simglobe-page-title">Predictify</h1>
           </div>
           <div class="simglobe-page-actions">
             <button class="simglobe-btn simglobe-btn--primary simglobe-hedge-all-btn">
@@ -197,8 +201,88 @@ function createSimGlobeMainPage() {
         <audio class="simglobe-audio-element" preload="metadata"></audio>
       </div>
 
+      <!-- View Toggle -->
+      <div class="simglobe-view-toggle">
+        <button class="simglobe-toggle-btn active" data-view="table">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+          </svg>
+          Risk Table
+        </button>
+        <button class="simglobe-toggle-btn" data-view="heatmap">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+            <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+          </svg>
+          SimGym Heatmap
+        </button>
+      </div>
+
+      <!-- SimGym Friction Mapping Section (hidden by default) -->
+      <div class="simglobe-simgym-section" id="simglobe-heatmap-view" style="display: none;">
+        <div class="simglobe-simgym-header">
+          <div class="simglobe-simgym-title-row">
+            <div class="simglobe-simgym-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="simglobe-simgym-title">SimGym — Friction Mapping</h3>
+              <p class="simglobe-simgym-subtitle">We don't just predict events—we simulate their impact on your store</p>
+            </div>
+          </div>
+          <span class="simglobe-simgym-live-badge">
+            <span class="simglobe-live-dot"></span>
+            Live Simulation
+          </span>
+        </div>
+        
+        <div class="simglobe-simgym-content">
+          <!-- Heatmap Grid -->
+          <div class="simglobe-heatmap-container">
+            <div class="simglobe-heatmap-label-row">
+              <span>Risk Intensity Over Time</span>
+              <span>Next 30 Days →</span>
+            </div>
+            <div class="simglobe-heatmap-grid" id="simglobe-heatmap">
+              <!-- Cells will be populated dynamically -->
+            </div>
+            <div class="simglobe-heatmap-legend">
+              <div class="simglobe-legend-item">
+                <span class="simglobe-legend-dot simglobe-legend-low"></span>
+                <span>Low Risk</span>
+              </div>
+              <div class="simglobe-legend-item">
+                <span class="simglobe-legend-dot simglobe-legend-medium"></span>
+                <span>Medium</span>
+              </div>
+              <div class="simglobe-legend-item">
+                <span class="simglobe-legend-dot simglobe-legend-high"></span>
+                <span>High Risk</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Stats Cards -->
+          <div class="simglobe-simgym-stats">
+            <div class="simglobe-stat-card">
+              <span class="simglobe-stat-value" id="scenarios-count">1,000</span>
+              <span class="simglobe-stat-label">Scenarios Simulated</span>
+            </div>
+            <div class="simglobe-stat-card">
+              <span class="simglobe-stat-value simglobe-stat-warning" id="black-swan-count">47</span>
+              <span class="simglobe-stat-label">Black Swan Events</span>
+            </div>
+            <div class="simglobe-stat-card">
+              <span class="simglobe-stat-value simglobe-stat-success" id="protected-value">$12.4K</span>
+              <span class="simglobe-stat-label">Projected Protection</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Market Risks Table (matches Markets page layout) -->
-      <div class="simglobe-risks-container">
+      <div class="simglobe-risks-container" id="simglobe-table-view">
         <div class="simglobe-table-wrapper">
           <!-- Table Header -->
           <div class="simglobe-table-header">
@@ -234,11 +318,75 @@ function createSimGlobeMainPage() {
   return page;
 }
 
+function populateHeatmap(page) {
+  const heatmapContainer = page.querySelector('#simglobe-heatmap');
+  if (!heatmapContainer) return;
+  
+  // Generate a realistic-looking heatmap grid (6 rows x 10 cols = 60 cells for 30 days)
+  // Values 0-4 represent risk intensity
+  const grid = [
+    [1, 1, 2, 2, 3, 3, 4, 4, 3, 3],
+    [1, 2, 2, 3, 3, 4, 4, 4, 4, 3],
+    [2, 2, 3, 3, 4, 4, 4, 4, 3, 3],
+    [2, 3, 3, 4, 4, 4, 4, 3, 3, 2],
+    [1, 2, 3, 3, 4, 4, 3, 3, 2, 2],
+    [1, 1, 2, 2, 3, 3, 3, 2, 2, 1],
+  ];
+  
+  const colors = [
+    'rgba(42, 126, 110, 0.15)',  // 0 - very low
+    'rgba(42, 126, 110, 0.3)',   // 1 - low
+    'rgba(42, 126, 110, 0.5)',   // 2 - medium-low
+    'rgba(255, 180, 50, 0.6)',   // 3 - medium-high (warning)
+    'rgba(220, 80, 80, 0.7)',    // 4 - high (danger)
+  ];
+  
+  heatmapContainer.innerHTML = '';
+  
+  grid.forEach((row, rowIndex) => {
+    row.forEach((cell, colIndex) => {
+      const cellEl = document.createElement('div');
+      cellEl.className = 'simglobe-heatmap-cell';
+      cellEl.style.backgroundColor = colors[cell];
+      cellEl.style.animationDelay = `${rowIndex * 0.05 + colIndex * 0.03}s`;
+      cellEl.title = `Day ${colIndex * 3 + 1}-${colIndex * 3 + 3}: ${['Very Low', 'Low', 'Medium', 'Elevated', 'High'][cell]} Risk`;
+      heatmapContainer.appendChild(cellEl);
+    });
+  });
+}
+
 function setupMainPageEvents(page) {
+  // Populate the heatmap
+  populateHeatmap(page);
+  
+  // View toggle buttons
+  const toggleBtns = page.querySelectorAll('.simglobe-toggle-btn');
+  const tableView = page.querySelector('#simglobe-table-view');
+  const heatmapView = page.querySelector('#simglobe-heatmap-view');
+  
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const view = btn.dataset.view;
+      
+      // Update button states
+      toggleBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Toggle views
+      if (view === 'table') {
+        tableView.style.display = 'block';
+        heatmapView.style.display = 'none';
+      } else {
+        tableView.style.display = 'none';
+        heatmapView.style.display = 'block';
+      }
+    });
+  });
+  
   // Hedge All button
   const hedgeAllBtn = page.querySelector('.simglobe-hedge-all-btn');
   hedgeAllBtn.addEventListener('click', () => {
-    const { showHedgeModal } = window.SimGlobeComponents;
+    const { showHedgeModal } = window.PredictifyComponents;
     showHedgeModal({
       market: 'Portfolio Hedge',
       marketId: 'portfolio',
@@ -250,7 +398,7 @@ function setupMainPageEvents(page) {
   // Refresh button
   const refreshBtn = page.querySelector('.simglobe-refresh-btn');
   refreshBtn.addEventListener('click', async () => {
-    await window.SimGlobeApi.clearCache();
+    await window.PredictifyApi.clearCache();
     const tableBody = page.querySelector('.simglobe-table-body');
     tableBody.innerHTML = `
       <div class="simglobe-loading">
@@ -417,8 +565,8 @@ async function loadMainPageContent(page) {
 
   try {
     const [risks, voiceBrief] = await Promise.all([
-      window.SimGlobeApi.getRisks(),
-      window.SimGlobeApi.getVoiceBrief()
+      window.PredictifyApi.getRisks(),
+      window.PredictifyApi.getVoiceBrief()
     ]);
 
     // Populate transcript panel with briefing text
@@ -457,7 +605,7 @@ async function loadMainPageContent(page) {
         </svg>
         <h3>Unable to load market data</h3>
         <p>${error.message}</p>
-        <p class="simglobe-error-hint">Make sure the SimGlobe backend is running on localhost:3000</p>
+        <p class="simglobe-error-hint">Make sure the Predictify backend is running on localhost:4000</p>
         <button class="simglobe-btn simglobe-btn--secondary simglobe-retry-btn">
           Retry
         </button>
@@ -472,85 +620,124 @@ async function loadMainPageContent(page) {
 }
 
 // Small business guidance for different risk categories
+// Store's products cache (populated from Shopify or hardcoded for demo)
+const STORE_PRODUCTS = [
+  {
+    id: '10535101038897',
+    name: 'Nike Air Force 1 High By You',
+    category: 'Sneakers',
+    description: 'Custom sneakers manufactured in China and Vietnam with rubber soles',
+    price: 185,
+    inventory: 4
+  },
+  {
+    id: '10535100809521',
+    name: 'Short sleeve cotton T-shirt',
+    category: 'T-Shirts',
+    description: 'Cotton t-shirt made from imported cotton fabric',
+    price: 29,
+    inventory: 3
+  }
+];
+
+// Make STORE_PRODUCTS available globally for other injectors
+window.STORE_PRODUCTS = STORE_PRODUCTS;
+
+function getAffectedProductsForRisk(market) {
+  if (!window.ProductRiskLinker) return [];
+  
+  const matches = window.ProductRiskLinker.findProductsForRisk(market, STORE_PRODUCTS);
+  return matches.map(m => ({
+    id: m.product.id,
+    name: m.product.name,
+    category: m.product.category,
+    impactLevel: m.impactLevel,
+    reasons: m.impactReasons
+  }));
+}
+
+function extractStoreId() {
+  const match = window.location.pathname.match(/\/store\/([^\/]+)/);
+  return match ? match[1] : 'uofthacks';
+}
+
 function getSmallBusinessGuidance(market) {
   const category = (market.category || '').toLowerCase();
+  const title = (market.title || '').toLowerCase();
   const prob = parseFloat(market.probability);
   const isHighRisk = prob >= 0.6;
   
   const guidance = {
     shipping: {
-      why: "Shipping delays directly impact your delivery promises and customer satisfaction. Late deliveries lead to refund requests, bad reviews, and lost repeat customers.",
+      why: "Shipping delays directly impact your delivery promises and customer satisfaction. Late deliveries lead to refund requests, bad reviews, and lost repeat customers. For a small business, even a few negative reviews can hurt your sales.",
       actions: isHighRisk ? [
-        "📦 Update your store's estimated delivery times now",
-        "✉️ Draft a proactive email to customers with pending orders",
-        "🔄 Consider switching to air freight for high-margin products",
+        "📦 Update your store's estimated delivery times TODAY",
+        "✉️ Email customers with pending orders about potential delays",
+        "🔄 Switch to faster shipping for your best-selling items",
+        "💵 Adjust your free shipping threshold to offset costs",
         "💰 Hedge this risk on Solana to protect your margins"
       ] : [
-        "👀 Monitor this risk — it could escalate",
-        "📋 Review your backup supplier list",
-        "📊 Check which products rely on affected routes"
+        "👀 Monitor this closely — it could escalate",
+        "📋 Check which of YOUR products rely on affected routes",
+        "📧 Draft a delay notification email (just in case)"
       ]
     },
     economic: {
-      why: "Economic changes affect consumer spending patterns. Inflation means customers are more price-sensitive and may delay discretionary purchases.",
+      why: "When customers feel economic pressure, they cut back on non-essential spending first. Your sales could drop, and customers become more price-sensitive. This is especially tough for small businesses competing on value.",
       actions: isHighRisk ? [
-        "💳 Launch a payment plan option (like Shop Pay Installments)",
-        "🏷️ Create budget-friendly product bundles",
-        "📢 Emphasize value messaging in your marketing",
-        "💰 Hedge to protect against margin compression"
+        "🏷️ Create budget-friendly bundles NOW (e.g., 'Value Packs')",
+        "💳 Enable Shop Pay Installments if you haven't already",
+        "📢 Shift marketing to emphasize value and savings",
+        "🎯 Run a 'Beat the Price Hike' sale before costs go up",
+        "💰 Hedge to protect against sales slowdown"
       ] : [
-        "📊 Analyze which products are most price-sensitive",
-        "🎯 Prepare promotional campaigns for quick deployment",
-        "💬 Survey customers about pricing preferences"
-      ]
-    },
-    geopolitical: {
-      why: "Geopolitical events can disrupt supply chains, currency exchange rates, and international shipping routes — all critical for merchants.",
-      actions: isHighRisk ? [
-        "🌍 Diversify your supplier base immediately",
-        "💵 Lock in currency exchange rates for pending orders",
-        "📦 Increase safety stock for affected products",
-        "💰 Use Solana hedging to protect against disruption costs"
-      ] : [
-        "📋 Map your supply chain dependencies",
-        "🔍 Research alternative suppliers in stable regions",
-        "📰 Set up news alerts for key markets"
+        "📊 Check which products are most price-sensitive",
+        "🎯 Prepare a flash sale campaign (ready to deploy)",
+        "💬 Ask customers what deals they'd love to see"
       ]
     },
     tariffs: {
-      why: "Tariff changes directly affect your product costs. Even a 10% tariff can eliminate your profit margin on imported goods.",
+      why: "If you import products (especially from China), tariffs directly eat into your profit margin. A 15% tariff could wipe out your entire margin on some products — this is existential for small importers.",
       actions: isHighRisk ? [
-        "📊 Calculate new break-even prices for affected products",
-        "🏠 Source domestic alternatives where possible",
-        "📦 Pre-order inventory before tariffs take effect",
-        "💰 Hedge against the cost increase on Solana"
+        "🚨 Place bulk orders NOW before tariffs hit",
+        "📊 Calculate your new break-even prices per product",
+        "🏠 Research domestic or alternative country suppliers",
+        "💰 Raise prices gradually rather than all at once",
+        "🛡️ Hedge on Solana to offset increased costs"
       ] : [
-        "📋 List which products could be affected",
-        "💰 Calculate potential cost impacts",
-        "🔍 Research tariff-exempt alternatives"
+        "📋 List exactly which products would be affected",
+        "💰 Calculate: How much would your costs increase?",
+        "🔍 Start researching backup suppliers today"
       ]
     },
     default: {
-      why: "Market events like this can affect your business in unexpected ways — from changing customer behavior to supply chain disruptions.",
+      why: "Market events like this can affect your small business in unexpected ways — from changing what customers want to buy, to how much they're willing to spend, to whether your products even arrive on time.",
       actions: isHighRisk ? [
-        "🔍 Research how this could impact your specific products",
-        "📧 Prepare customer communication templates",
-        "📊 Review your contingency plans",
+        "🔍 Ask: How could this specifically affect MY store?",
+        "📧 Draft a customer communication (just in case)",
+        "📊 Review which products might be impacted",
         "💰 Consider hedging to protect your margins"
       ] : [
-        "👀 Keep monitoring this trend",
-        "📋 Document potential business impacts",
-        "🤔 Discuss with your team or advisor"
+        "👀 Keep an eye on this trend",
+        "📋 Think about how it could affect your bestsellers",
+        "💭 Discuss with other merchants in your niche"
       ]
     }
   };
 
-  // Match category to guidance
-  for (const [key, value] of Object.entries(guidance)) {
-    if (category.includes(key)) {
-      return value;
-    }
+  // Match category to guidance (check both category and title)
+  const searchText = category + ' ' + title;
+  
+  if (searchText.includes('shipping') || searchText.includes('delivery') || searchText.includes('usps') || searchText.includes('postal') || searchText.includes('fuel')) {
+    return guidance.shipping;
   }
+  if (searchText.includes('tariff') || searchText.includes('import') || searchText.includes('china')) {
+    return guidance.tariffs;
+  }
+  if (searchText.includes('economic') || searchText.includes('spending') || searchText.includes('consumer') || searchText.includes('price') || searchText.includes('inflation') || searchText.includes('valentine') || searchText.includes('payment')) {
+    return guidance.economic;
+  }
+  
   return guidance.default;
 }
 
@@ -587,7 +774,7 @@ function createMarketRiskRow(market) {
     </div>
     <div class="simglobe-table-col simglobe-col-market">
       <div class="simglobe-market-info">
-        <span class="simglobe-market-title">${market.title}</span>
+      <span class="simglobe-market-title">${market.title}</span>
         <button class="simglobe-info-btn" title="Why this matters for your business" data-market-id="${market.id}">
           <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
@@ -606,12 +793,36 @@ function createMarketRiskRow(market) {
     </div>
   `;
 
+  // Get affected products for this market risk
+  const affectedProducts = getAffectedProductsForRisk(market);
+
   // Info panel (hidden by default)
   const infoPanel = document.createElement('div');
   infoPanel.className = 'simglobe-info-panel';
   infoPanel.style.display = 'none';
   infoPanel.innerHTML = `
     <div class="simglobe-info-content">
+      ${affectedProducts.length > 0 ? `
+      <div class="simglobe-info-section simglobe-affected-products">
+        <h4 class="simglobe-info-heading">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"/>
+          </svg>
+          Your Products Affected (${affectedProducts.length})
+        </h4>
+        <div class="simglobe-product-links">
+          ${affectedProducts.map(p => `
+            <a href="/store/${extractStoreId()}/products/${p.id}" class="simglobe-product-link simglobe-product-link--${p.impactLevel}" data-product-id="${p.id}">
+              <span class="product-link-name">${p.name}</span>
+              <span class="product-link-impact product-link-impact--${p.impactLevel}">${p.impactLevel} impact</span>
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" class="product-link-arrow">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+      ` : ''}
       <div class="simglobe-info-section">
         <h4 class="simglobe-info-heading">
           <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
@@ -667,11 +878,32 @@ function createMarketRiskRow(market) {
     infoBtn.classList.toggle('active', !isVisible);
   });
 
+  // Product link click handlers - close Predictify overlay and navigate
+  const productLinks = infoPanel.querySelectorAll('.simglobe-product-link');
+  productLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const productId = link.dataset.productId;
+      const storeId = extractStoreId();
+      
+      // Close the Predictify overlay
+      const mainPage = document.querySelector('[data-simglobe="main-page"]');
+      if (mainPage) {
+        mainPage.style.display = 'none';
+      }
+      
+      // Navigate to the product page
+      window.location.href = `/store/${storeId}/products/${productId}`;
+    });
+  });
+
   // Hedge button in info panel
   const hedgeBtn = infoPanel.querySelector('.simglobe-hedge-btn');
   hedgeBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    const { showHedgeModal } = window.SimGlobeComponents;
+    const { showHedgeModal } = window.PredictifyComponents;
     showHedgeModal({
       market: market.title,
       marketId: market.id,
@@ -685,7 +917,7 @@ function createMarketRiskRow(market) {
     if (e.target.closest('.simglobe-info-btn') || e.target.closest('.simglobe-info-panel')) {
       return;
     }
-    const { showHedgeModal } = window.SimGlobeComponents;
+    const { showHedgeModal } = window.PredictifyComponents;
     showHedgeModal({
       market: market.title,
       marketId: market.id,
@@ -720,7 +952,7 @@ function closeSimGlobeMainPage() {
 }
 
 // Make available globally
-window.SimGlobeInjectors = window.SimGlobeInjectors || {};
-window.SimGlobeInjectors.showSimGlobeMainPage = showSimGlobeMainPage;
-window.SimGlobeInjectors.closeSimGlobeMainPage = closeSimGlobeMainPage;
+window.PredictifyInjectors = window.PredictifyInjectors || {};
+window.PredictifyInjectors.showPredictifyMainPage = showSimGlobeMainPage;
+window.PredictifyInjectors.closePredictifyMainPage = closeSimGlobeMainPage;
 

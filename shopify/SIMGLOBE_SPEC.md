@@ -1,10 +1,10 @@
-# SimGlobe - Shopify Prediction Market Oracle (Hackathon POC)
+# Predictify - Shopify Prediction Market Oracle (Hackathon POC)
 
 ## 🎯 Project Goal
 Build a Chrome Extension that injects prediction market intelligence into Shopify Admin, 
 allowing merchants to hedge business risks using Polymarket data + Gemini AI + Solana Pay.
 
-Demo Flow: Install extension → Open any Shopify Admin → See SimGlobe in sidebar, 
+Demo Flow: Install extension → Open any Shopify Admin → See Predictify in sidebar, 
 voice briefing on home, AI recommendations on campaigns page.
 
 ---
@@ -76,7 +76,7 @@ CREATE TWO SEPARATE DIRECTORIES:
 ````json
 {
   "manifest_version": 3,
-  "name": "SimGlobe - Shopify Market Oracle",
+  "name": "Predictify - Shopify Market Oracle",
   "version": "1.0.0",
   "description": "Hedge your e-commerce business with prediction markets",
   "permissions": ["activeTab", "storage", "scripting"],
@@ -121,7 +121,7 @@ REQUIREMENTS:
   * /marketing/campaigns → campaigns-widget.js
   * /products/* → product-action.js
   * ALL pages → sidebar-injector.js
-- Console log: "SimGlobe activated on: [page-type]"
+- Console log: "Predictify activated on: [page-type]"
 - Error handling with try-catch
 - Respect if extension is disabled via storage
 
@@ -146,7 +146,7 @@ const waitForElement = (selector, timeout = 5000) => {
 // Main init
 const init = async () => {
   const pageType = detectPage();
-  console.log(`SimGlobe activated on: ${pageType}`);
+  console.log(`Predictify activated on: ${pageType}`);
   
   // Always inject sidebar
   await injectSidebar();
@@ -173,7 +173,7 @@ if (document.readyState === 'loading') {
 ````
 
 ### File: content/sidebar-injector.js
-Injects SimGlobe tab into Shopify Admin sidebar.
+Injects Predictify tab into Shopify Admin sidebar.
 
 TARGET: Find the sidebar navigation (usually <nav> with specific classes)
 POSITION: Between "Markets" and "Finance" menu items
@@ -204,7 +204,7 @@ WIDGET CONTENT:
 <div class="simglobe-home-widget">
   <div class="Polaris-Card">
     <div class="Polaris-Card__Header">
-      <h2>🎙️ SimGlobe Market Brief</h2>
+      <h2>🎙️ Predictify Market Brief</h2>
       <button class="refresh-btn">Refresh</button>
     </div>
     <div class="Polaris-Card__Section">
@@ -528,13 +528,13 @@ Extension popup UI.
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>SimGlobe</title>
+  <title>Predictify</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div class="popup-container">
     <div class="header">
-      <h1>🌐 SimGlobe</h1>
+      <h1>🌐 Predictify</h1>
       <p class="tagline">The Oracle Merchant</p>
     </div>
     
@@ -604,7 +604,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 {
   "name": "simglobe-backend",
   "version": "1.0.0",
-  "description": "SimGlobe API server",
+  "description": "Predictify API server",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -684,7 +684,7 @@ app.get('/health', (req, res) => {
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`SimGlobe API running on port ${PORT}`);
+  console.log(`Predictify API running on port ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV}`);
 });
 ````
@@ -875,7 +875,7 @@ router.get('/', async (req, res, next) => {
 });
 
 function generateBriefingScript(markets) {
-  const intro = "Good morning. Here's your SimGlobe market briefing.";
+  const intro = "Good morning. Here's your Predictify market briefing.";
   
   const marketSummaries = markets.map((m, i) => {
     return `Risk ${i + 1}: ${m.title} is currently at ${m.probability}% probability. ${getImpactDescription(m)}.`;
@@ -1120,7 +1120,7 @@ class SolanaService {
       
       // Real Solana Pay implementation would go here
       const reference = new PublicKey.random();
-      const label = `SimGlobe Hedge - Market ${marketId}`;
+      const label = `Predictify Hedge - Market ${marketId}`;
       const message = `Hedging ${amount} USDC`;
       
       const url = encodeURL({
@@ -1291,7 +1291,7 @@ module.exports = (err, req, res, next) => {
 
 ### File: simglobe-extension/README.md
 ````markdown
-# SimGlobe Chrome Extension
+# Predictify Chrome Extension
 
 ## Installation for Development
 
@@ -1305,7 +1305,7 @@ module.exports = (err, req, res, next) => {
 
 1. Navigate to any Shopify Admin (e.g., `admin.shopify.com/store/test-store/home`)
 2. You should see:
-   - SimGlobe tab in sidebar
+   - Predictify tab in sidebar
    - Voice briefing widget on home page
    - Market alerts on campaigns page
 
@@ -1323,7 +1323,7 @@ module.exports = (err, req, res, next) => {
 
 ### File: simglobe-backend/README.md
 ````markdown
-# SimGlobe Backend API
+# Predictify Backend API
 
 ## Setup
 

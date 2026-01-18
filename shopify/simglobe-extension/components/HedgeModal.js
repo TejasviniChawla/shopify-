@@ -191,7 +191,7 @@ function createHedgeModal(hedgeData) {
 }
 
 async function executeHedge(hedgeData) {
-  return window.SimGlobeApi.executeHedge({
+  return window.PredictifyApi.executeHedge({
     marketId: hedgeData.marketId,
     amount: hedgeData.amount,
     walletAddress: hedgeData.walletAddress || 'demo_wallet'
@@ -205,7 +205,7 @@ async function pollTransactionStatus(transactionId, statusElement, attempts = 0)
   }
 
   try {
-    const status = await window.SimGlobeApi.getHedgeStatus(transactionId);
+    const status = await window.PredictifyApi.getHedgeStatus(transactionId);
 
     if (status.status === 'confirmed') {
       statusElement.textContent = 'Transaction confirmed!';
@@ -233,6 +233,6 @@ function showHedgeModal(hedgeData) {
 }
 
 // Make available globally
-window.SimGlobeComponents = window.SimGlobeComponents || {};
-window.SimGlobeComponents.createHedgeModal = createHedgeModal;
-window.SimGlobeComponents.showHedgeModal = showHedgeModal;
+window.PredictifyComponents = window.PredictifyComponents || {};
+window.PredictifyComponents.createHedgeModal = createHedgeModal;
+window.PredictifyComponents.showHedgeModal = showHedgeModal;

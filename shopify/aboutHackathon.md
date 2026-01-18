@@ -1,4 +1,4 @@
-# Oracle Merchant (SimGlobe) — UofTHacks 2026 Project Brief 
+# Predictify (SimGlobe) — UofTHacks 2026 Project Brief 
 
 > **Goal:** Ship a polished demo that wins the **Shopify prize track** while still clearly qualifying for **Amplitude** (behavioral analytics + AI) and **Foresters** (multi-agent) tracks, plus clearly showcasing **Solana**, with optional easy add-ons for **Gemini** + **ElevenLabs**.
 

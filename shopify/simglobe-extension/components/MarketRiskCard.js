@@ -5,7 +5,7 @@
 
 function createMarketRiskCard(risk) {
   // risk = { id, title, probability, impact, category, volume, endDate }
-  const { createRiskBadge, createImpactBadge } = window.SimGlobeComponents;
+  const { createRiskBadge, createImpactBadge } = window.PredictifyComponents;
 
   const card = document.createElement('div');
   card.className = 'market-risk-card';
@@ -80,6 +80,6 @@ async function showMarketDetails(risk) {
 }
 
 // Make available globally
-window.SimGlobeComponents = window.SimGlobeComponents || {};
-window.SimGlobeComponents.createMarketRiskCard = createMarketRiskCard;
-window.SimGlobeComponents.createRiskList = createRiskList;
+window.PredictifyComponents = window.PredictifyComponents || {};
+window.PredictifyComponents.createMarketRiskCard = createMarketRiskCard;
+window.PredictifyComponents.createRiskList = createRiskList;

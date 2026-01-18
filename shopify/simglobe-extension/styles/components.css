@@ -419,6 +419,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 999999 !important;
   background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
@@ -428,11 +429,15 @@
 }
 
 .simglobe-modal {
+  position: relative;
   width: 100%;
-  max-width: 420px;
-  max-height: calc(100vh - 48px);
-  background: var(--sg-bg-surface, #1a1a1a);
-  border-radius: 12px;
+  max-width: 480px;
+  max-height: calc(100vh - 80px);
+  background: linear-gradient(145deg, #1e1e1e, #151515);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  z-index: 1000000;
   box-shadow: var(--sg-shadow-lg);
   overflow: hidden;
   display: flex;
@@ -443,139 +448,189 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--sg-border-subdued, #2a2a2a);
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(0, 255, 163, 0.08), rgba(220, 31, 255, 0.05));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px 16px 0 0;
 }
 
 .modal-header-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .solana-logo {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), rgba(220, 31, 255, 0.15));
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 163, 0.2);
 }
 
 .modal-header h2 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
-  color: var(--sg-text, #e3e3e3);
+  color: #ffffff;
   margin: 0;
+  letter-spacing: -0.3px;
 }
 
 .modal-close-btn {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  border: none;
-  border-radius: 6px;
-  color: var(--sg-text-subdued, #787878);
-  font-size: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #888888;
+  font-size: 22px;
   cursor: pointer;
-  transition: background 100ms ease, color 100ms ease;
+  transition: all 150ms ease;
 }
 
 .modal-close-btn:hover {
-  background: var(--sg-bg-surface-hover, #262626);
-  color: var(--sg-text, #e3e3e3);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: scale(1.05);
 }
 
 .modal-body {
-  padding: 20px;
+  padding: 24px;
   overflow-y: auto;
+  max-height: calc(100vh - 200px);
 }
 
 .modal-actions {
-  padding: 16px 20px;
-  border-top: 1px solid var(--sg-border-subdued, #2a2a2a);
+  padding: 20px 24px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
+  flex-direction: column;
   gap: 12px;
-  justify-content: flex-end;
 }
 
 /* Hedge Modal Specific */
 .hedge-details {
-  background: var(--sg-bg-surface-secondary, #141414);
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .hedge-detail-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
+  padding: 12px 0;
 }
 
 .hedge-detail-row:not(:last-child) {
-  border-bottom: 1px solid var(--sg-border-subdued, #2a2a2a);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .hedge-label {
   font-size: 13px;
-  color: var(--sg-text-subdued, #787878);
+  font-weight: 500;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .hedge-value {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
-  color: var(--sg-text, #e3e3e3);
+  color: #ffffff;
+  max-width: 60%;
+  text-align: right;
 }
 
 .hedge-value.hedge-amount {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--sg-interactive, #36a69a);
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00FFA3, #00D9FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hedge-qr-section {
   text-align: center;
-  padding: 24px;
-  background: var(--sg-bg-surface-secondary, #141414);
-  border-radius: 8px;
-  margin-bottom: 16px;
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  margin-bottom: 20px;
 }
 
 .hedge-qr-code {
-  max-width: 180px;
-  border-radius: 8px;
+  max-width: 200px;
+  border-radius: 12px;
   background: #ffffff;
-  padding: 8px;
+  padding: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .hedge-qr-placeholder {
-  padding: 32px;
-  color: var(--sg-text-subdued, #787878);
+  padding: 40px;
+  color: #666666;
+}
+
+.hedge-qr-placeholder svg {
+  opacity: 0.5;
 }
 
 .hedge-scan-text {
-  font-size: 12px;
-  color: var(--sg-text-subdued, #787878);
-  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #888888;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.hedge-scan-text::before {
+  content: "📱";
 }
 
 /* Solana Explainer in Hedge Modal */
 .solana-explainer {
   text-align: left;
-  margin-top: 20px;
-  padding: 16px;
-  background: linear-gradient(135deg, rgba(0, 255, 163, 0.05), rgba(220, 31, 255, 0.05));
-  border: 1px solid rgba(0, 255, 163, 0.2);
-  border-radius: 8px;
+  margin-top: 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(0, 255, 163, 0.06), rgba(220, 31, 255, 0.04));
+  border: 1px solid rgba(0, 255, 163, 0.15);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.solana-explainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00FFA3, #DC1FFF);
 }
 
 .solana-explainer h4 {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--sg-text, #e3e3e3);
-  margin: 0 0 12px 0;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .solana-explainer ul {
@@ -585,54 +640,107 @@
 }
 
 .solana-explainer li {
-  font-size: 12px;
-  color: var(--sg-text-secondary, #a3a3a3);
-  padding: 6px 0;
-  padding-left: 16px;
+  font-size: 13px;
+  color: #b0b0b0;
+  padding: 10px 0;
+  padding-left: 28px;
   position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.solana-explainer li:last-child {
+  border-bottom: none;
 }
 
 .solana-explainer li::before {
   content: "✓";
   position: absolute;
   left: 0;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 255, 163, 0.15);
   color: #00FFA3;
+  font-size: 11px;
   font-weight: bold;
+  border-radius: 50%;
 }
 
 .solana-explainer li strong {
-  color: var(--sg-text, #e3e3e3);
+  color: #ffffff;
+  font-weight: 600;
 }
 
 .solana-explainer .solana-note {
-  font-size: 11px;
-  color: var(--sg-text-subdued, #787878);
-  margin: 12px 0 0 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--sg-border-subdued, #2a2a2a);
+  font-size: 12px;
+  color: #888888;
+  margin: 16px 0 0 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.solana-explainer .solana-note::before {
+  content: "⚡";
 }
 
 .hedge-confirm-btn {
   width: 100%;
+  padding: 16px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #00FFA3, #00D9FF);
+  color: #000000;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 200ms ease;
+  box-shadow: 0 4px 20px rgba(0, 255, 163, 0.25);
+}
+
+.hedge-confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 255, 163, 0.35);
+}
+
+.hedge-confirm-btn:active {
+  transform: translateY(0);
+}
+
+.hedge-confirm-btn:disabled {
+  background: #333333;
+  color: #666666;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .hedge-status {
   text-align: center;
   font-size: 13px;
-  padding: 10px;
-  border-radius: 6px;
-  margin-top: 12px;
+  font-weight: 500;
+  padding: 14px;
+  border-radius: 10px;
+  margin-top: 16px;
 }
 
 .hedge-status--success {
-  background: var(--sg-success-bg, #1a2b1a);
-  color: var(--sg-success-text, #5bb98c);
+  background: rgba(0, 255, 163, 0.1);
+  color: #00FFA3;
+  border: 1px solid rgba(0, 255, 163, 0.2);
 }
 
 .hedge-status--error {
-  background: var(--sg-critical-bg, #2b1a1a);
-  color: var(--sg-critical-text, #f47067);
+  background: rgba(255, 100, 100, 0.1);
+  color: #ff6464;
+  border: 1px solid rgba(255, 100, 100, 0.2);
 }
 
 /* ========================
@@ -1066,20 +1174,58 @@
 
 /* ========================
    MAIN PAGE VIEW
-   Matches Shopify's Markets page layout
-   Uses Shopify's native color scheme
+   Fixed overlay with its own scroll container
    ======================== */
 
 .simglobe-main-page {
-  width: 100%;
-  min-height: 100vh;
+  position: fixed;
+  top: 56px; /* Below Shopify top bar */
+  left: 240px; /* Account for Shopify sidebar */
+  right: 0;
+  bottom: 0;
   background: var(--p-color-bg, #f1f1f1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 99;
+}
+
+/* Handle smaller sidebar */
+@media (max-width: 1200px) {
+  .simglobe-main-page {
+    left: 200px;
+  }
+}
+
+/* Handle collapsed/mobile sidebar */
+@media (max-width: 768px) {
+  .simglobe-main-page {
+    left: 0;
+    top: 56px;
+  }
+}
+
+/* Custom scrollbar for main page */
+.simglobe-main-page::-webkit-scrollbar {
+  width: 8px;
+}
+
+.simglobe-main-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.simglobe-main-page::-webkit-scrollbar-thumb {
+  background: var(--p-color-border, #c4c4c4);
+  border-radius: 4px;
+}
+
+.simglobe-main-page::-webkit-scrollbar-thumb:hover {
+  background: var(--p-color-border-hover, #999);
 }
 
 .simglobe-page-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px 32px;
+  padding: 24px 32px 80px 32px; /* Extra bottom padding for scroll */
 }
 
 /* Page Header - Matches Markets page */
@@ -1719,6 +1865,275 @@
 }
 
 /* ========================
+   VIEW TOGGLE BUTTONS
+   Switch between table and heatmap
+   ======================== */
+
+.simglobe-view-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  background: var(--p-color-bg-surface, #ffffff);
+  border: 1px solid var(--p-color-border, #e1e1e1);
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.simglobe-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--p-color-text-secondary, #6d7175);
+  cursor: pointer;
+  transition: all 150ms ease;
+  flex: 1;
+  justify-content: center;
+}
+
+.simglobe-toggle-btn:hover {
+  background: var(--p-color-bg-surface-hover, #f6f6f7);
+  color: var(--p-color-text, #1a1a1a);
+}
+
+.simglobe-toggle-btn.active {
+  background: #2a7e6e;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(42, 126, 110, 0.25);
+}
+
+.simglobe-toggle-btn svg {
+  flex-shrink: 0;
+}
+
+/* ========================
+   SIMGYM FRICTION MAPPING
+   Heatmap visualization
+   ======================== */
+
+.simglobe-simgym-section {
+  background: var(--p-color-bg-surface, #ffffff);
+  border: 1px solid var(--p-color-border, #e1e1e1);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.simglobe-simgym-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.simglobe-simgym-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.simglobe-simgym-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, rgba(42, 126, 110, 0.1), rgba(42, 126, 110, 0.05));
+  border-radius: 10px;
+  color: #2a7e6e;
+  flex-shrink: 0;
+}
+
+.simglobe-simgym-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--p-color-text, #1a1a1a);
+  margin: 0 0 4px 0;
+}
+
+.simglobe-simgym-subtitle {
+  font-size: 13px;
+  color: var(--p-color-text-secondary, #6d7175);
+  margin: 0;
+}
+
+.simglobe-simgym-live-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(42, 126, 110, 0.08);
+  border: 1px solid rgba(42, 126, 110, 0.2);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #2a7e6e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.simglobe-live-dot {
+  width: 6px;
+  height: 6px;
+  background: #2a7e6e;
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.simglobe-simgym-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Heatmap */
+.simglobe-heatmap-container {
+  flex: 1;
+}
+
+.simglobe-heatmap-label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--p-color-text-secondary, #6d7175);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.simglobe-heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 3px;
+}
+
+.simglobe-heatmap-cell {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+  animation: fadeInCell 0.4s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInCell {
+  to { opacity: 1; }
+}
+
+.simglobe-heatmap-cell:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.simglobe-heatmap-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.simglobe-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--p-color-text-secondary, #6d7175);
+}
+
+.simglobe-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.simglobe-legend-low {
+  background: rgba(42, 126, 110, 0.3);
+}
+
+.simglobe-legend-medium {
+  background: rgba(255, 180, 50, 0.6);
+}
+
+.simglobe-legend-high {
+  background: rgba(220, 80, 80, 0.7);
+}
+
+/* Stats Cards */
+.simglobe-simgym-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 160px;
+}
+
+.simglobe-stat-card {
+  background: var(--p-color-bg-surface-secondary, #f6f6f7);
+  border: 1px solid var(--p-color-border-subdued, #e1e1e1);
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-align: center;
+}
+
+.simglobe-stat-value {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2a7e6e;
+  line-height: 1.2;
+}
+
+.simglobe-stat-value.simglobe-stat-warning {
+  color: #b45309;
+}
+
+.simglobe-stat-value.simglobe-stat-success {
+  color: #2a7e6e;
+}
+
+.simglobe-stat-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--p-color-text-secondary, #6d7175);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 4px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .simglobe-simgym-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .simglobe-simgym-stats {
+    flex-direction: row;
+    min-width: auto;
+  }
+  
+  .simglobe-stat-card {
+    flex: 1;
+  }
+  
+  .simglobe-simgym-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* ========================
    SMALL BUSINESS INFO PANEL
    Shows "why it matters" + "what to do"
    ======================== */
@@ -1782,6 +2197,94 @@
 
 .simglobe-info-section:last-of-type {
   margin-bottom: 20px;
+}
+
+/* Affected Products Links */
+.simglobe-affected-products {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 12px;
+  margin: -4px 0 16px 0;
+  border: 1px solid #e1e8e5;
+}
+
+.simglobe-product-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 24px;
+}
+
+.simglobe-product-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f8fafa;
+  border: 1px solid #e1e8e5;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 150ms ease;
+  cursor: pointer;
+}
+
+.simglobe-product-link:hover {
+  background: #eef5f3;
+  border-color: #2a7e6e;
+  transform: translateX(2px);
+}
+
+.simglobe-product-link--high {
+  border-left: 3px solid #d72c0d;
+}
+
+.simglobe-product-link--medium {
+  border-left: 3px solid #b98900;
+}
+
+.simglobe-product-link--low {
+  border-left: 3px solid #2a7e6e;
+}
+
+.product-link-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.product-link-impact {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.product-link-impact--high {
+  background: #fbeae5;
+  color: #d72c0d;
+}
+
+.product-link-impact--medium {
+  background: #fdf8e8;
+  color: #b98900;
+}
+
+.product-link-impact--low {
+  background: #e6f3f0;
+  color: #1a6b4a;
+}
+
+.product-link-arrow {
+  color: #6d7175;
+  flex-shrink: 0;
+  transition: transform 150ms ease;
+}
+
+.simglobe-product-link:hover .product-link-arrow {
+  transform: translateX(3px);
+  color: #2a7e6e;
 }
 
 .simglobe-info-heading {
@@ -1885,5 +2388,191 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+  }
+}
+
+/* ========================
+   PRODUCT RISK MODAL
+   Styles for product-specific risk analysis
+   ======================== */
+
+.simglobe-product-risk-modal {
+  max-width: 520px;
+}
+
+.product-risk-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-risk-summary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px;
+  background: #f8fafa;
+  border-radius: 10px;
+}
+
+.risk-score-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.risk-score-circle.risk-score--high {
+  background: linear-gradient(135deg, #fbeae5, #fcd5cc);
+  border: 2px solid #d72c0d;
+}
+
+.risk-score-circle.risk-score--medium {
+  background: linear-gradient(135deg, #fdf8e8, #fcefc5);
+  border: 2px solid #b98900;
+}
+
+.risk-score-circle.risk-score--low {
+  background: linear-gradient(135deg, #e6f3f0, #c8ebe3);
+  border: 2px solid #2a7e6e;
+}
+
+.risk-score-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--p-color-text, #1a1a1a);
+}
+
+.risk-score-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--p-color-text-secondary, #6d7175);
+  letter-spacing: 0.5px;
+}
+
+.risk-summary-text p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--p-color-text, #1a1a1a);
+  margin: 0;
+}
+
+.product-risk-breakdown h3,
+.product-risk-recommendation h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--p-color-text, #1a1a1a);
+  margin: 0 0 12px 0;
+}
+
+.risk-factors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.risk-factor-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8fafa;
+  border-radius: 8px;
+  border: 1px solid #e1e8e5;
+}
+
+.risk-factor-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.risk-factor-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--p-color-text, #1a1a1a);
+}
+
+.risk-factor-match {
+  font-size: 11px;
+  color: #2a7e6e;
+  font-style: italic;
+}
+
+.risk-factor-impact {
+  font-size: 11px;
+  color: var(--p-color-text-secondary, #6d7175);
+  white-space: nowrap;
+}
+
+.risk-factor-view-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid #e1e1e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 150ms ease;
+  color: #6d7175;
+}
+
+.risk-factor-view-btn:hover {
+  background: #2a7e6e;
+  border-color: #2a7e6e;
+  color: #ffffff;
+}
+
+.hedge-recommendation-box {
+  padding: 16px;
+  background: linear-gradient(135deg, #e6f3f0, #d4ebe5);
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #2a7e6e;
+}
+
+.hedge-amount {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a6b4a;
+  margin-bottom: 4px;
+}
+
+.hedge-recommendation-box p {
+  font-size: 12px;
+  color: var(--p-color-text-secondary, #6d7175);
+  margin: 0;
+}
+
+.product-risk-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.product-risk-actions .simglobe-btn {
+  flex: 1;
+}
+
+/* Row highlight effect for navigation */
+.simglobe-table-row.simglobe-highlight {
+  animation: highlightPulse 2s ease-out;
+}
+
+@keyframes highlightPulse {
+  0% {
+    background: #d4ebe5;
+    box-shadow: 0 0 0 3px rgba(42, 126, 110, 0.3);
+  }
+  100% {
+    background: transparent;
+    box-shadow: none;
   }
 }

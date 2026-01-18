@@ -1,14 +1,14 @@
 /**
  * Sidebar Injector
- * Injects SimGlobe tab into Shopify Admin sidebar navigation
+ * Injects Predictify tab into Shopify Admin sidebar navigation
  * Clones exact structure from existing nav items for perfect integration
  */
 
 async function injectSidebar() {
-  const { waitForElement, isAlreadyInjected, markAsInjected } = window.SimGlobeDom;
+  const { waitForElement, isAlreadyInjected, markAsInjected } = window.PredictifyDom;
 
   if (isAlreadyInjected('sidebar')) {
-    console.log('SimGlobe: Sidebar already injected');
+    console.log('Predictify: Sidebar already injected');
     return;
   }
 
@@ -32,14 +32,14 @@ async function injectSidebar() {
     }
 
     if (!navList) {
-      console.log('SimGlobe: Could not find sidebar navigation');
+      console.log('Predictify: Could not find sidebar navigation');
       return;
     }
 
     // Find a reference nav item (like Finance or Analytics) to clone structure
     const existingItems = navList.querySelectorAll('li');
     if (existingItems.length === 0) {
-      console.log('SimGlobe: No existing nav items found');
+      console.log('Predictify: No existing nav items found');
       return;
     }
 
@@ -85,7 +85,7 @@ async function injectSidebar() {
         }
         // Update text-containing spans
         if (span.textContent.trim() && !textUpdated) {
-          span.textContent = 'SimGlobe';
+          span.textContent = 'Predictify';
           textUpdated = true;
         }
       });
@@ -95,7 +95,7 @@ async function injectSidebar() {
         const textNodes = Array.from(link.childNodes).filter(n => n.nodeType === 3);
         textNodes.forEach(node => {
           if (node.textContent.trim()) {
-            node.textContent = 'SimGlobe';
+            node.textContent = 'Predictify';
             textUpdated = true;
           }
         });
@@ -147,9 +147,9 @@ async function injectSidebar() {
         e.stopPropagation();
         
         // Show main page content in center (like Markets page)
-        const { showSimGlobeMainPage } = window.SimGlobeInjectors || {};
-        if (showSimGlobeMainPage) {
-          showSimGlobeMainPage();
+        const { showPredictifyMainPage } = window.PredictifyInjectors || {};
+        if (showPredictifyMainPage) {
+          showPredictifyMainPage();
         }
       });
     }
@@ -183,16 +183,16 @@ async function injectSidebar() {
     // Update badge with risk count
     updateSidebarBadge();
 
-    console.log('SimGlobe: Sidebar injected successfully');
+    console.log('Predictify: Sidebar injected successfully');
 
   } catch (error) {
-    console.error('SimGlobe: Error injecting sidebar:', error);
+    console.error('Predictify: Error injecting sidebar:', error);
   }
 }
 
 async function updateSidebarBadge() {
   try {
-    const data = await window.SimGlobeApi.getRisks();
+    const data = await window.PredictifyApi.getRisks();
     const badge = document.querySelector('.simglobe-nav-badge');
 
     if (badge && data.markets && data.markets.length > 0) {
@@ -206,10 +206,10 @@ async function updateSidebarBadge() {
       }
     }
   } catch (error) {
-    console.error('SimGlobe: Error updating sidebar badge:', error);
+    console.error('Predictify: Error updating sidebar badge:', error);
   }
 }
 
 // Make available globally
-window.SimGlobeInjectors = window.SimGlobeInjectors || {};
-window.SimGlobeInjectors.injectSidebar = injectSidebar;
+window.PredictifyInjectors = window.PredictifyInjectors || {};
+window.PredictifyInjectors.injectSidebar = injectSidebar;

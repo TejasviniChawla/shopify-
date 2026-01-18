@@ -115,5 +115,5 @@ function formatTime(seconds) {
 }
 
 // Make available globally
-window.SimGlobeComponents = window.SimGlobeComponents || {};
-window.SimGlobeComponents.createVoiceBriefing = createVoiceBriefing;
+window.PredictifyComponents = window.PredictifyComponents || {};
+window.PredictifyComponents.createVoiceBriefing = createVoiceBriefing;

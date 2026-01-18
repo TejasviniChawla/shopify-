@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-SimGlobe is a Chrome Extension that injects prediction market intelligence into Shopify Admin, allowing merchants to hedge business risks using Polymarket data, Gemini AI analysis, and Solana Pay.
+Predictify is a Chrome Extension that injects prediction market intelligence into Shopify Admin, allowing merchants to hedge business risks using Polymarket data, Gemini AI analysis, and Solana Pay.
 
 ## Repository Structure
 
@@ -35,7 +35,7 @@ npm start            # Start production server
   - `/home` → `home-widget.js` (voice briefing widget)
   - `/marketing/campaigns` → `campaigns-widget.js` (AI recommendations banner)
   - `/products/*` → `product-action.js` (market risk button)
-  - All pages → `sidebar-injector.js` (SimGlobe nav item)
+  - All pages → `sidebar-injector.js` (Predictify nav item)
 - Components in `/components/` are vanilla JS DOM builders (MarketRiskCard, VoiceBriefing, HedgeModal, RiskBadge)
 - API client uses `chrome.storage.local` for caching with TTL
 
@@ -58,7 +58,7 @@ All services have mock data fallbacks when API keys are not configured.
 
 Extension uses Shopify Polaris design system with dark mode support:
 - `styles/polaris-theme.css` - Polaris CSS variables and base styles
-- `styles/components.css` - SimGlobe-specific component styles
+- `styles/components.css` - Predictify-specific component styles
 - Use Inter font, match Shopify's Winter '26 design system
 
 ## Environment Variables (Backend)

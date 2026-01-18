@@ -4,10 +4,10 @@
  */
 
 async function injectHomeWidget() {
-  const { waitForElement, isAlreadyInjected, markAsInjected, createElement } = window.SimGlobeDom;
+  const { waitForElement, isAlreadyInjected, markAsInjected, createElement } = window.PredictifyDom;
 
   if (isAlreadyInjected('home-widget')) {
-    console.log('SimGlobe: Home widget already injected');
+    console.log('Predictify: Home widget already injected');
     return;
   }
 
@@ -33,7 +33,7 @@ async function injectHomeWidget() {
     }
 
     if (!container) {
-      console.log('SimGlobe: Could not find home page container');
+      console.log('Predictify: Could not find home page container');
       return;
     }
 
@@ -54,10 +54,10 @@ async function injectHomeWidget() {
     // Load data into widget
     loadHomeWidgetData(widget);
 
-    console.log('SimGlobe: Home widget injected successfully');
+    console.log('Predictify: Home widget injected successfully');
 
   } catch (error) {
-    console.error('SimGlobe: Error injecting home widget:', error);
+    console.error('Predictify: Error injecting home widget:', error);
   }
 }
 
@@ -75,7 +75,7 @@ function createHomeWidget() {
               <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
             </svg>
           </span>
-          <h2>SimGlobe Market Brief</h2>
+          <h2>Predictify Market Brief</h2>
         </div>
         <button class="simglobe-refresh-btn" title="Refresh data">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
@@ -95,7 +95,7 @@ function createHomeWidget() {
 
   // Refresh button handler
   widget.querySelector('.simglobe-refresh-btn').addEventListener('click', async () => {
-    await window.SimGlobeApi.clearCache();
+    await window.PredictifyApi.clearCache();
     const content = widget.querySelector('.simglobe-card-content');
     content.innerHTML = `
       <div class="simglobe-loading">
@@ -114,15 +114,15 @@ async function loadHomeWidgetData(widget) {
 
   try {
     const [voiceBrief, risks] = await Promise.all([
-      window.SimGlobeApi.getVoiceBrief(),
-      window.SimGlobeApi.getRisks()
+      window.PredictifyApi.getVoiceBrief(),
+      window.PredictifyApi.getRisks()
     ]);
 
     content.innerHTML = '';
 
     // Voice briefing player
     if (voiceBrief && voiceBrief.audioUrl) {
-      const { createVoiceBriefing } = window.SimGlobeComponents;
+      const { createVoiceBriefing } = window.PredictifyComponents;
       const voicePlayer = createVoiceBriefing(voiceBrief.audioUrl, voiceBrief.transcript);
       content.appendChild(voicePlayer);
     }
@@ -171,14 +171,14 @@ async function loadHomeWidgetData(widget) {
       <div class="simglobe-error">
         <p>Unable to load market data</p>
         <p class="simglobe-error-detail">${error.message}</p>
-        <p class="simglobe-error-hint">Make sure the SimGlobe backend is running on localhost:3000</p>
+        <p class="simglobe-error-hint">Make sure the Predictify backend is running on localhost:3000</p>
       </div>
     `;
   }
 }
 
 function createRiskItem(risk) {
-  const { createRiskBadge, createImpactBadge } = window.SimGlobeComponents;
+  const { createRiskBadge, createImpactBadge } = window.PredictifyComponents;
 
   const item = document.createElement('div');
   item.className = 'simglobe-risk-item';
@@ -201,7 +201,7 @@ function createRiskItem(risk) {
 
   // Click to show details
   item.addEventListener('click', () => {
-    const { showHedgeModal } = window.SimGlobeComponents;
+    const { showHedgeModal } = window.PredictifyComponents;
     showHedgeModal({
       market: risk.title,
       marketId: risk.id,
@@ -227,5 +227,5 @@ function calculateHedgeAmount(risk) {
 }
 
 // Make available globally
-window.SimGlobeInjectors = window.SimGlobeInjectors || {};
-window.SimGlobeInjectors.injectHomeWidget = injectHomeWidget;
+window.PredictifyInjectors = window.PredictifyInjectors || {};
+window.PredictifyInjectors.injectHomeWidget = injectHomeWidget;

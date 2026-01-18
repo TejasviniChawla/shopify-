@@ -1,5 +1,5 @@
 /**
- * SimGlobe Popup Script
+ * Predictify Popup Script
  * Handles popup UI interactions and data display
  */
 

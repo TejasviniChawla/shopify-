@@ -4,10 +4,10 @@
  */
 
 async function injectCampaignsWidget() {
-  const { waitForElement, isAlreadyInjected, markAsInjected } = window.SimGlobeDom;
+  const { waitForElement, isAlreadyInjected, markAsInjected } = window.PredictifyDom;
 
   if (isAlreadyInjected('campaigns-widget')) {
-    console.log('SimGlobe: Campaigns widget already injected');
+    console.log('Predictify: Campaigns widget already injected');
     return;
   }
 
@@ -32,7 +32,7 @@ async function injectCampaignsWidget() {
     }
 
     if (!container) {
-      console.log('SimGlobe: Could not find campaigns page container');
+      console.log('Predictify: Could not find campaigns page container');
       return;
     }
 
@@ -51,13 +51,13 @@ async function injectCampaignsWidget() {
       container.insertBefore(banner, container.firstChild);
     }
 
-    console.log('SimGlobe: Campaigns widget injected successfully');
+    console.log('Predictify: Campaigns widget injected successfully');
 
     // Set up polling for real-time updates
     startCampaignsPolling(banner, storeId);
 
   } catch (error) {
-    console.error('SimGlobe: Error injecting campaigns widget:', error);
+    console.error('Predictify: Error injecting campaigns widget:', error);
   }
 }
 
@@ -77,7 +77,7 @@ async function createCampaignsBanner(storeId) {
 
   // Load analysis data
   try {
-    const analysis = await window.SimGlobeApi.analyzeStore({
+    const analysis = await window.PredictifyApi.analyzeStore({
       storeId,
       page: 'campaigns'
     });
@@ -94,7 +94,7 @@ async function createCampaignsBanner(storeId) {
             </svg>
           </div>
           <div class="simglobe-banner-text">
-            <h3>SimGlobe Market Intelligence</h3>
+            <h3>Predictify Market Intelligence</h3>
             <p>Unable to load analysis. <a href="#" class="simglobe-retry-link">Retry</a></p>
           </div>
         </div>
@@ -103,7 +103,7 @@ async function createCampaignsBanner(storeId) {
 
     banner.querySelector('.simglobe-retry-link')?.addEventListener('click', async (e) => {
       e.preventDefault();
-      const analysis = await window.SimGlobeApi.analyzeStore({ storeId, page: 'campaigns' });
+      const analysis = await window.PredictifyApi.analyzeStore({ storeId, page: 'campaigns' });
       updateCampaignsBanner(banner, analysis);
     });
   }
@@ -177,7 +177,7 @@ function updateCampaignsBanner(banner, analysis) {
   });
 
   banner.querySelector('.simglobe-hedge-btn')?.addEventListener('click', () => {
-    const { showHedgeModal } = window.SimGlobeComponents;
+    const { showHedgeModal } = window.PredictifyComponents;
     showHedgeModal({
       market: 'Campaign Risk Hedge',
       marketId: 'campaign-hedge',
@@ -221,7 +221,7 @@ function applyAllRecommendations(recommendations) {
     setTimeout(() => toast.remove(), 300);
   }, 3000);
 
-  console.log('SimGlobe: Applying recommendations:', recommendations);
+  console.log('Predictify: Applying recommendations:', recommendations);
 }
 
 function extractStoreId() {
@@ -241,14 +241,14 @@ function startCampaignsPolling(banner, storeId) {
   pollingInterval = setInterval(async () => {
     try {
       // Clear cache to get fresh data
-      await window.SimGlobeApi.setCache(`simglobe_analysis_${storeId}_campaigns`, null, 0);
-      const analysis = await window.SimGlobeApi.analyzeStore({
+      await window.PredictifyApi.setCache(`simglobe_analysis_${storeId}_campaigns`, null, 0);
+      const analysis = await window.PredictifyApi.analyzeStore({
         storeId,
         page: 'campaigns'
       });
       updateCampaignsBanner(banner, analysis);
     } catch (error) {
-      console.error('SimGlobe: Polling error:', error);
+      console.error('Predictify: Polling error:', error);
     }
   }, 30000);
 
@@ -261,5 +261,5 @@ function startCampaignsPolling(banner, storeId) {
 }
 
 // Make available globally
-window.SimGlobeInjectors = window.SimGlobeInjectors || {};
-window.SimGlobeInjectors.injectCampaignsWidget = injectCampaignsWidget;
+window.PredictifyInjectors = window.PredictifyInjectors || {};
+window.PredictifyInjectors.injectCampaignsWidget = injectCampaignsWidget;

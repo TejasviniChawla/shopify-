@@ -65,7 +65,7 @@ if (process.env.NODE_ENV === 'development') {
 app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
-    service: 'simglobe-api',
+    service: 'predictify-api',
     version: '1.0.0',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development'
@@ -97,7 +97,7 @@ app.listen(PORT, () => {
   console.log('');
   console.log('  ╔═══════════════════════════════════════╗');
   console.log('  ║                                       ║');
-  console.log('  ║   🌐 SimGlobe API Server              ║');
+  console.log('  ║   🌐 Predictify API Server             ║');
   console.log('  ║                                       ║');
   console.log(`  ║   Running on: http://localhost:${PORT}    ║`);
   console.log(`  ║   Environment: ${(process.env.NODE_ENV || 'development').padEnd(18)}║`);

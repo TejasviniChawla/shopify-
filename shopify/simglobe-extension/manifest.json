@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "SimGlobe - Shopify Market Oracle",
+  "name": "Predictify - Commerce Intelligence",
   "version": "1.0.0",
-  "description": "Hedge your e-commerce business with prediction markets",
+  "description": "AI-powered market predictions for Shopify merchants",
   "permissions": ["activeTab", "storage", "scripting"],
   "host_permissions": [
     "*://admin.shopify.com/*",
-    "http://localhost:3000/*",
-    "https://api.simglobe.io/*"
+    "http://localhost:4000/*",
+    "https://api.predictify.io/*"
   ],
   "content_scripts": [
     {
@@ -15,15 +15,16 @@
       "js": [
         "utils/dom-helpers.js",
         "utils/api-client.js",
+        "utils/product-risk-linker.js",
         "components/RiskBadge.js",
         "components/MarketRiskCard.js",
         "components/VoiceBriefing.js",
         "components/HedgeModal.js",
         "content/sidebar-injector.js",
         "content/main-page-injector.js",
-        "content/home-widget.js",
         "content/campaigns-widget.js",
         "content/product-action.js",
+        "content/products-list-injector.js",
         "content/injector.js"
       ],
       "css": ["styles/polaris-theme.css", "styles/components.css"],

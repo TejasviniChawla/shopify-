@@ -42,7 +42,7 @@ function createImpactBadge(impact) {
 }
 
 // Make available globally
-window.SimGlobeComponents = window.SimGlobeComponents || {};
-window.SimGlobeComponents.createRiskBadge = createRiskBadge;
-window.SimGlobeComponents.createImpactBadge = createImpactBadge;
-window.SimGlobeComponents.getProbabilityClass = getProbabilityClass;
+window.PredictifyComponents = window.PredictifyComponents || {};
+window.PredictifyComponents.createRiskBadge = createRiskBadge;
+window.PredictifyComponents.createImpactBadge = createImpactBadge;
+window.PredictifyComponents.getProbabilityClass = getProbabilityClass;

@@ -1,5 +1,5 @@
 /**
- * SimGlobe Main Injector
+ * Predictify Main Injector
  * Orchestrates page detection and delegates to specific injectors
  */
 
@@ -57,16 +57,16 @@
     // Check if enabled
     const enabled = await checkEnabled();
     if (!enabled) {
-      console.log('SimGlobe: Extension is disabled');
+      console.log('Predictify: Extension is disabled');
       return;
     }
 
     // Detect page type
     const pageType = detectPage();
-    console.log(`SimGlobe: Activated on ${pageType} page`);
+    console.log(`Predictify: Activated on ${pageType} page`);
 
     // Get injectors
-    const { injectSidebar, injectHomeWidget, injectCampaignsWidget, injectProductAction } = window.SimGlobeInjectors || {};
+    const { injectSidebar, injectCampaignsWidget, injectProductAction, injectProductsListRisks } = window.PredictifyInjectors || {};
 
     try {
       // Always inject sidebar navigation (unless already done)
@@ -77,9 +77,7 @@
       // Page-specific injections
       switch (pageType) {
         case 'home':
-          if (injectHomeWidget) {
-            await injectHomeWidget();
-          }
+          // Home widget disabled - users can access Predictify from sidebar
           break;
 
         case 'campaigns':
@@ -95,7 +93,9 @@
           break;
 
         case 'products-list':
-          // Could add bulk risk analysis here
+          if (injectProductsListRisks) {
+            await injectProductsListRisks();
+          }
           break;
 
         case 'orders':
@@ -112,10 +112,10 @@
       }
 
       // Log successful initialization
-      console.log('SimGlobe: Initialization complete');
+      console.log('Predictify: Initialization complete');
 
     } catch (error) {
-      console.error('SimGlobe: Initialization error:', error);
+      console.error('Predictify: Initialization error:', error);
     }
   };
 
@@ -127,14 +127,14 @@
     const observer = new MutationObserver(() => {
       if (window.location.pathname !== lastPath) {
         lastPath = window.location.pathname;
-        console.log('SimGlobe: Navigation detected, re-initializing...');
+        console.log('Predictify: Navigation detected, re-initializing...');
 
         // Small delay to let the new page render
         setTimeout(() => {
-          // Close SimGlobe main page if open and restore original content
-          const { closeSimGlobeMainPage } = window.SimGlobeInjectors || {};
-          if (closeSimGlobeMainPage) {
-            closeSimGlobeMainPage();
+          // Close Predictify main page if open and restore original content
+          const { closePredictifyMainPage } = window.PredictifyInjectors || {};
+          if (closePredictifyMainPage) {
+            closePredictifyMainPage();
           }
 
           // Remove old injections before re-injecting
@@ -175,7 +175,7 @@
   }
 
   // Expose for debugging
-  window.SimGlobe = {
+  window.Predictify = {
     reinit: init,
     detectPage,
     version: '1.0.0'

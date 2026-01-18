@@ -19,11 +19,11 @@ export function FooterSection() {
           className="mb-24 text-center"
         >
           <h2 className="font-serif text-4xl font-light tracking-tight text-foreground md:text-6xl">
-            Ready to trade on{" "}
+            Reclaim your{" "}
             <span className="bg-gradient-to-r from-gold to-accent bg-clip-text text-transparent">
-              truth
+              identity
             </span>
-            ?
+            {" "}as an informed merchant
           </h2>
           <p className="mx-auto mt-6 max-w-lg font-mono text-sm text-muted-foreground">
             Join the merchants who see the future before it becomes the news.
@@ -84,16 +84,40 @@ export function FooterSection() {
               Company
             </h4>
             <ul className="mt-4 space-y-3">
-              {["About", "Blog", "Careers", "Contact"].map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
-                    className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a
+                  href="#"
+                  className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/careers"
+                  className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://devpost.com/software/oracle-news-project"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Contact
+                </a>
+              </li>
             </ul>
           </div>
         </div>

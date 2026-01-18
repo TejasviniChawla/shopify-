@@ -34,7 +34,7 @@ export function GlassNav() {
             <a href="#story" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
               Proof
             </a>
-            <a href="#demo" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
+            <a href="https://drive.google.com/file/d/1hGdsbbaiP60EIEgl2G1u3MKAfc0Cyas9/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
               Demo
             </a>
             <a href="#technology" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">

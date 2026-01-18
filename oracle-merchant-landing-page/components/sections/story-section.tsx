@@ -36,7 +36,7 @@ export function StorySection() {
             Chapter II
           </span>
           <h2 className="mt-4 font-serif text-4xl font-light tracking-tight text-foreground md:text-6xl">
-            The Tragedy of Sloane
+            The Tragedy of Sarah
           </h2>
         </motion.div>
 
@@ -69,7 +69,7 @@ export function StorySection() {
 
               <div className="space-y-4">
                 <p className="font-mono text-sm leading-relaxed text-muted-foreground">
-                  In 2024, the Red Sea crisis cost Sloane&apos;s Sustainable Textiles{" "}
+                  In 2024, the Red Sea crisis cost Sarah&apos;s Sustainable Textiles{" "}
                   <span className="font-semibold text-destructive">$85,000</span> in lost orders.
                 </p>
                 <p className="font-mono text-sm leading-relaxed text-muted-foreground">
@@ -112,7 +112,7 @@ export function StorySection() {
                 </div>
                 <div>
                   <span className="font-mono text-xs uppercase tracking-widest text-accent">
-                    The Oracle Edge
+                    The Predictify Edge
                   </span>
                   <h3 className="font-serif text-xl font-medium text-foreground">
                     Trading on Truth
@@ -126,7 +126,7 @@ export function StorySection() {
                   Polymarket showed an 82% probability of transit drops.
                 </p>
                 <p className="font-mono text-sm leading-relaxed text-muted-foreground">
-                  The Oracle Merchant saw the signal.
+                  Predictify saw the signal.
                 </p>
                 <p className="border-l-2 border-accent/50 pl-4 font-serif text-lg italic text-foreground">
                   Before the storm hit.
@@ -142,7 +142,7 @@ export function StorySection() {
                 <div className="h-2 w-2 rounded-full bg-gold" />
               </div>
               <div className="mt-2 flex justify-between font-mono text-xs text-muted-foreground">
-                <span className="text-accent">-42 Days: Oracle Alert</span>
+                <span className="text-accent">-42 Days: Predictify Alert</span>
                 <span>Crisis Hits</span>
               </div>
             </div>

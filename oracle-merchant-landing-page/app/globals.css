@@ -17,7 +17,7 @@
   --secondary-foreground: #1a1a1a;
   --muted: #E8E6E1;
   --muted-foreground: #6B6B6B;
-  --accent: #00FF41; /* Market-Pulse Green */
+  --accent: #10B981; /* Emerald Green - readable */
   --accent-foreground: #0a0a0a;
   --gold: #C9A962; /* Gold accent */
   --gold-foreground: #1a1a1a;
@@ -26,7 +26,7 @@
   --border: #E0DDD6;
   --input: #E0DDD6;
   --ring: #C9A962;
-  --chart-1: #00FF41;
+  --chart-1: #10B981;
   --chart-2: #C9A962;
   --chart-3: #1a1a1a;
   --chart-4: #6B6B6B;
@@ -55,7 +55,7 @@
   --secondary-foreground: #F9F8F6;
   --muted: #1f1f1f;
   --muted-foreground: #9CA3AF;
-  --accent: #00FF41;
+  --accent: #10B981;
   --accent-foreground: #0a0a0a;
   --gold: #C9A962;
   --gold-foreground: #0a0a0a;
@@ -64,14 +64,14 @@
   --border: #2a2a2a;
   --input: #2a2a2a;
   --ring: #C9A962;
-  --chart-1: #00FF41;
+  --chart-1: #10B981;
   --chart-2: #C9A962;
   --chart-3: #F9F8F6;
   --chart-4: #9CA3AF;
   --chart-5: #1f1f1f;
   --sidebar: #0a0a0a;
   --sidebar-foreground: #F9F8F6;
-  --sidebar-primary: #00FF41;
+  --sidebar-primary: #10B981;
   --sidebar-primary-foreground: #0a0a0a;
   --sidebar-accent: #1f1f1f;
   --sidebar-accent-foreground: #F9F8F6;

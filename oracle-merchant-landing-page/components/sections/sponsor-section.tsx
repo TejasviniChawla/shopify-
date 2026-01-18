@@ -164,7 +164,7 @@ export function SponsorSection() {
             How It Works
           </h2>
           <p className="mx-auto mt-4 max-w-xl font-mono text-sm text-muted-foreground">
-            Click to explore the technology powering Oracle Merchant
+            Click to explore the technology powering Predictify
           </p>
         </motion.div>
 
@@ -183,7 +183,7 @@ export function SponsorSection() {
           >
             <div className="space-y-6">
               <p className="font-mono text-sm leading-relaxed text-foreground">
-                Oracle Merchant transforms how merchants operate by connecting <span className="text-gold">real-time prediction market signals</span> directly to actionable commerce decisions.
+                Predictify transforms how merchants operate by connecting <span className="text-gold">real-time prediction market signals</span> directly to actionable commerce decisions.
               </p>
               
               <div className="grid gap-4 md:grid-cols-2">
@@ -406,7 +406,7 @@ export function SponsorSection() {
           >
             <div className="space-y-6">
               <p className="font-mono text-sm leading-relaxed text-foreground">
-                When the Oracle sees risk, you can <span className="text-accent">lock in protection on Solana</span>. Our integration uses Solana Pay for instant, low-cost hedge transactions.
+                When Predictify sees risk, you can <span className="text-accent">lock in protection on Solana</span>. Our integration uses Solana Pay for instant, low-cost hedge transactions.
               </p>
               
               <div className="rounded-xl border border-accent/20 bg-accent/5 p-5">
@@ -419,7 +419,7 @@ export function SponsorSection() {
                   <div className="flex items-start gap-3">
                     <div className="flex h-6 w-6 items-center justify-center rounded-full bg-accent/20 font-mono text-xs font-bold text-accent">1</div>
                     <div>
-                      <p className="font-mono text-sm text-foreground">Oracle detects high-probability risk (e.g., shipping delays at 78%)</p>
+                      <p className="font-mono text-sm text-foreground">Predictify detects high-probability risk (e.g., shipping delays at 78%)</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">

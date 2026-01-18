@@ -63,7 +63,7 @@ export function OracleSection() {
             Chapter III
           </span>
           <h2 className="mt-4 font-serif text-4xl font-light tracking-tight text-foreground md:text-6xl">
-            The Morning Oracle
+            The Morning Briefing
           </h2>
           <p className="mx-auto mt-4 max-w-lg font-mono text-sm text-muted-foreground">
             ElevenLabs-powered voice intelligence delivers your daily briefing
@@ -109,7 +109,7 @@ export function OracleSection() {
             {/* Transcript */}
             <div className="mb-8 rounded-xl border border-border/50 bg-card/30 p-6">
               <p className="font-serif text-lg italic leading-relaxed text-foreground md:text-xl">
-                &ldquo;Good morning, Sloane. Suez risk is at{" "}
+                &ldquo;Good morning, Sarah. Suez risk is at{" "}
                 <span className="text-accent">82%</span>. I suggest rerouting the
                 September silk shipment to air-freight. Shall I execute?&rdquo;
               </p>

@@ -51,7 +51,7 @@ export function FooterSection() {
                 <Eye className="h-5 w-5 text-background" />
               </div>
               <span className="font-serif text-lg font-semibold tracking-wide text-foreground">
-                The Oracle Merchant
+                Predictify
               </span>
             </div>
             <p className="mt-4 max-w-sm font-mono text-sm leading-relaxed text-muted-foreground">
@@ -101,7 +101,7 @@ export function FooterSection() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-8 md:flex-row">
           <p className="font-mono text-xs text-muted-foreground">
-            © 2026 The Oracle Merchant. All rights reserved.
+            © 2026 Predictify. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <a

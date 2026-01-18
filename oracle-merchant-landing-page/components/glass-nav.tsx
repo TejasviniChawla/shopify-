@@ -19,7 +19,7 @@ export function GlassNav() {
               <Eye className="h-5 w-5 text-background" />
             </div>
             <span className="font-serif text-lg font-semibold tracking-wide text-foreground">
-              The Oracle Merchant
+              Predictify
             </span>
           </div>
 
@@ -32,7 +32,7 @@ export function GlassNav() {
               Story
             </a>
             <a href="#oracle" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
-              Oracle
+              Briefing
             </a>
             <a href="#simgym" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
               SimGym

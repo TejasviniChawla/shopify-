@@ -60,7 +60,7 @@ export function HeroSection() {
         >
           Wall Street trades on truth. Merchants trade on hope.
           <br />
-          <span className="text-foreground">The Oracle Merchant</span> turns global sentiment into inventory certainty.
+          <span className="text-foreground">Predictify</span> turns global sentiment into inventory certainty.
         </motion.p>
 
         {/* Stats */}

@@ -15,8 +15,8 @@ const _jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'The Oracle Merchant | Commerce Meets Prediction',
-  description: 'Transform global sentiment into inventory certainty. The Oracle Merchant bridges Polymarket prediction data with Shopify commerce.',
+  title: 'Predictify | AI-Powered Commerce Intelligence',
+  description: 'Transform market predictions into business action. Predictify bridges prediction market data with Shopify commerce.',
   generator: 'v0.app',
   icons: {
     icon: [

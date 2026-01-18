@@ -26,16 +26,16 @@ export function GlassNav() {
           {/* Navigation Links */}
           <div className="hidden items-center gap-6 lg:flex">
             <a href="#prophecy" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
-              Prophecy
+              Predictions
+            </a>
+            <a href="#identity" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
+              Solution
             </a>
             <a href="#story" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
-              Story
+              Proof
             </a>
-            <a href="#oracle" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
-              Briefing
-            </a>
-            <a href="#simgym" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
-              SimGym
+            <a href="#demo" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
+              Demo
             </a>
             <a href="#technology" className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
               Technology

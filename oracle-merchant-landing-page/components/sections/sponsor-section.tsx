@@ -2,11 +2,11 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef, useState } from "react"
-import { 
-  ChevronDown, 
-  ShoppingBag, 
-  BarChart3, 
-  Bot, 
+import {
+  ChevronDown,
+  ShoppingBag,
+  BarChart3,
+  Bot,
   Coins,
   Sparkles,
   TrendingUp,
@@ -16,7 +16,8 @@ import {
   ArrowRight,
   Cpu,
   MessageSquare,
-  ShieldCheck
+  ShieldCheck,
+  Code2
 } from "lucide-react"
 
 interface SponsorCardProps {
@@ -125,7 +126,7 @@ function FeatureItem({ icon, text }: { icon: React.ReactNode; text: string }) {
 
 export function SponsorSection() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [openCard, setOpenCard] = useState<string | null>(null)
+  const [openCard, setOpenCard] = useState<string | null>("shopify")
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -157,10 +158,12 @@ export function SponsorSection() {
           transition={{ duration: 0.8 }}
           className="mb-12 text-center"
         >
-          <span className="font-mono text-xs uppercase tracking-widest text-gold">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-4 py-2 font-mono text-xs uppercase tracking-widest text-gold">
+            <Code2 className="h-3 w-3" />
             Technical Deep Dive
           </span>
-          <h2 className="mt-4 font-serif text-4xl font-light tracking-tight text-foreground md:text-5xl">
+
+          <h2 className="mt-6 font-serif text-4xl font-light tracking-tight text-foreground md:text-5xl">
             How It Works
           </h2>
           <p className="mx-auto mt-4 max-w-xl font-mono text-sm text-muted-foreground">
@@ -185,7 +188,7 @@ export function SponsorSection() {
               <p className="font-mono text-sm leading-relaxed text-foreground">
                 Predictify transforms how merchants operate by connecting <span className="text-gold">real-time prediction market signals</span> directly to actionable commerce decisions.
               </p>
-              
+
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="rounded-xl border border-border/50 bg-card/30 p-4">
                   <div className="mb-3 flex items-center gap-2">
@@ -198,7 +201,7 @@ export function SponsorSection() {
                     <FeatureItem icon={<CheckCircle2 className="h-4 w-4 text-gold" />} text="Smart inventory re-ordering suggestions" />
                   </ul>
                 </div>
-                
+
                 <div className="rounded-xl border border-border/50 bg-card/30 p-4">
                   <div className="mb-3 flex items-center gap-2">
                     <TrendingUp className="h-4 w-4 text-gold" />
@@ -236,7 +239,7 @@ export function SponsorSection() {
               <p className="font-mono text-sm leading-relaxed text-foreground">
                 We implement the <span className="text-accent">Amplitude-style analytics loop</span>: tracking user behavior, feeding it to AI, and adapting the product experience in real-time.
               </p>
-              
+
               {/* Event Schema */}
               <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
                 <div className="mb-3 flex items-center gap-2">
@@ -265,23 +268,23 @@ export function SponsorSection() {
 
               {/* The Loop */}
               <div className="flex items-center justify-center gap-2 py-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-accent/20 bg-accent/5">
-                  <Users className="h-6 w-6 text-accent" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-accent/20 bg-accent/5">
+                  <Users className="h-5 w-5 text-accent" />
                 </div>
                 <ArrowRight className="h-4 w-4 text-muted-foreground" />
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-accent/20 bg-accent/5">
-                  <BarChart3 className="h-6 w-6 text-accent" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-accent/20 bg-accent/5">
+                  <BarChart3 className="h-5 w-5 text-accent" />
                 </div>
                 <ArrowRight className="h-4 w-4 text-muted-foreground" />
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-accent/20 bg-accent/5">
-                  <Sparkles className="h-6 w-6 text-accent" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-accent/20 bg-accent/5">
+                  <Sparkles className="h-5 w-5 text-accent" />
                 </div>
                 <ArrowRight className="h-4 w-4 text-muted-foreground" />
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/20 bg-gold/5">
-                  <Zap className="h-6 w-6 text-gold" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/20 bg-gold/5">
+                  <Zap className="h-5 w-5 text-gold" />
                 </div>
               </div>
-              <div className="flex justify-center gap-8 font-mono text-xs text-muted-foreground">
+              <div className="flex justify-center gap-6 font-mono text-xs text-muted-foreground">
                 <span>Behavior</span>
                 <span>Analytics</span>
                 <span>AI</span>
@@ -312,7 +315,7 @@ export function SponsorSection() {
               <p className="font-mono text-sm leading-relaxed text-foreground">
                 Complex commerce decisions require <span className="text-purple-400">multiple specialized perspectives</span>. Our multi-agent system orchestrates 4 AI agents with clear state handoffs.
               </p>
-              
+
               {/* Agent Pipeline */}
               <div className="space-y-3">
                 <div className="flex items-start gap-4 rounded-xl border border-purple-500/20 bg-purple-500/5 p-4">
@@ -408,13 +411,13 @@ export function SponsorSection() {
               <p className="font-mono text-sm leading-relaxed text-foreground">
                 When Predictify sees risk, you can <span className="text-accent">lock in protection on Solana</span>. Our integration uses Solana Pay for instant, low-cost hedge transactions.
               </p>
-              
+
               <div className="rounded-xl border border-accent/20 bg-accent/5 p-5">
                 <div className="mb-4 flex items-center gap-2">
                   <Coins className="h-5 w-5 text-accent" />
                   <span className="font-mono text-sm font-medium text-accent">How Solana Hedging Works</span>
                 </div>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="flex h-6 w-6 items-center justify-center rounded-full bg-accent/20 font-mono text-xs font-bold text-accent">1</div>
@@ -425,7 +428,7 @@ export function SponsorSection() {
                   <div className="flex items-start gap-3">
                     <div className="flex h-6 w-6 items-center justify-center rounded-full bg-accent/20 font-mono text-xs font-bold text-accent">2</div>
                     <div>
-                      <p className="font-mono text-sm text-foreground">Click "Hedge" to generate a Solana Pay QR code</p>
+                      <p className="font-mono text-sm text-foreground">Click &ldquo;Hedge&rdquo; to generate a Solana Pay QR code</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -490,4 +493,3 @@ export function SponsorSection() {
     </section>
   )
 }
-

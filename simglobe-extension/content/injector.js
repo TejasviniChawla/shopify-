@@ -131,12 +131,18 @@
 
         // Small delay to let the new page render
         setTimeout(() => {
+          // Close SimGlobe main page if open and restore original content
+          const { closeSimGlobeMainPage } = window.SimGlobeInjectors || {};
+          if (closeSimGlobeMainPage) {
+            closeSimGlobeMainPage();
+          }
+
           // Remove old injections before re-injecting
           const oldInjections = document.querySelectorAll('[data-simglobe]');
           oldInjections.forEach(el => {
-            // Don't remove sidebar or panel on navigation
+            // Don't remove sidebar on navigation, but do remove main-page
             const type = el.getAttribute('data-simglobe');
-            if (type !== 'sidebar' && type !== 'panel') {
+            if (type !== 'sidebar') {
               el.remove();
             }
           });

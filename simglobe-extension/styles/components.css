@@ -999,3 +999,685 @@
 .product-risk-actions .simglobe-btn {
   flex: 1;
 }
+
+/* ========================
+   MAIN PAGE VIEW
+   Matches Shopify's Markets page layout
+   Uses Shopify's native color scheme
+   ======================== */
+
+.simglobe-main-page {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--p-color-bg, #f1f1f1);
+}
+
+.simglobe-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 32px;
+}
+
+/* Page Header - Matches Markets page */
+.simglobe-page-header {
+  margin-bottom: 24px;
+}
+
+.simglobe-page-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.simglobe-page-title-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.simglobe-page-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--p-color-icon-emphasis, #2a7e6e);
+}
+
+.simglobe-page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--p-color-text, #1a1a1a);
+  margin: 0;
+}
+
+.simglobe-page-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Search Bar - Matches Markets page */
+.simglobe-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: var(--p-color-bg-surface, #ffffff);
+  border: 1px solid var(--p-color-border, #e1e1e1);
+  border-radius: 10px;
+  box-shadow: var(--p-shadow-100, 0 1px 0 rgba(0,0,0,0.05));
+}
+
+.simglobe-search-input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.simglobe-search-icon {
+  color: var(--p-color-icon-secondary, #6d7175);
+  flex-shrink: 0;
+}
+
+.simglobe-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--p-color-text, #1a1a1a);
+  font-family: var(--sg-font-family);
+}
+
+.simglobe-search-input::placeholder {
+  color: var(--p-color-text-secondary, #6d7175);
+}
+
+.simglobe-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Voice Section */
+.simglobe-voice-section {
+  margin-bottom: 20px;
+}
+
+.simglobe-voice-card {
+  background: var(--p-color-bg-surface, #ffffff);
+  border: 1px solid var(--p-color-border, #e1e1e1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--p-shadow-100, 0 1px 0 rgba(0,0,0,0.05));
+}
+
+/* Audio Player Row */
+.simglobe-audio-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.simglobe-audio-play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2a7e6e 0%, #1a6b5a 100%);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+  flex-shrink: 0;
+}
+
+.simglobe-audio-play-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(42, 126, 110, 0.3);
+}
+
+.simglobe-audio-play-btn.playing {
+  background: linear-gradient(135deg, #1a6b5a 0%, #145a4a 100%);
+}
+
+.simglobe-audio-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 180px;
+}
+
+.simglobe-audio-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--p-color-text, #1a1a1a);
+}
+
+.simglobe-audio-duration {
+  font-size: 12px;
+  color: var(--p-color-text-secondary, #6d7175);
+}
+
+.simglobe-audio-progress {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.simglobe-audio-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--p-color-bg-surface-secondary, #e1e1e1);
+  border-radius: 3px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.simglobe-audio-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #2a7e6e, #3a9e8e);
+  border-radius: 3px;
+  transition: width 100ms linear;
+}
+
+.simglobe-audio-time {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--p-color-text-secondary, #6d7175);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Briefing Actions Row */
+.simglobe-briefing-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--p-color-border, #e1e1e1);
+}
+
+.simglobe-transcript-btn,
+.simglobe-email-subscribe-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: transparent;
+  border: 1px solid var(--p-color-border, #c4c4c4);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--p-color-text, #1a1a1a);
+  cursor: pointer;
+  transition: background 100ms ease, border-color 100ms ease;
+}
+
+.simglobe-transcript-btn:hover,
+.simglobe-email-subscribe-btn:hover {
+  background: var(--p-color-bg-surface-hover, #f6f6f7);
+  border-color: var(--p-color-border-hover, #999);
+}
+
+.simglobe-transcript-btn svg,
+.simglobe-email-subscribe-btn svg {
+  color: var(--p-color-icon-secondary, #6d7175);
+}
+
+/* Transcript Panel */
+.simglobe-transcript-panel {
+  margin-top: 16px;
+  background: var(--p-color-bg-surface-secondary, #f6f6f7);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.simglobe-transcript-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--p-color-bg-surface-secondary, #ededed);
+  border-bottom: 1px solid var(--p-color-border, #e1e1e1);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--p-color-text, #1a1a1a);
+}
+
+.simglobe-transcript-close {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  color: var(--p-color-text-secondary, #6d7175);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.simglobe-transcript-close:hover {
+  background: var(--p-color-bg-surface-hover, #e1e1e1);
+  color: var(--p-color-text, #1a1a1a);
+}
+
+.simglobe-transcript-text {
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--p-color-text-secondary, #4a4a4a);
+}
+
+/* Email Subscription Panel */
+.simglobe-email-panel {
+  margin-top: 16px;
+  background: linear-gradient(135deg, #f0f9f7 0%, #e8f5f2 100%);
+  border: 1px solid #c8e6e0;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.simglobe-email-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--p-color-text, #1a1a1a);
+}
+
+.simglobe-email-close {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  color: var(--p-color-text-secondary, #6d7175);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.simglobe-email-close:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.simglobe-email-desc {
+  font-size: 13px;
+  color: var(--p-color-text-secondary, #4a4a4a);
+  margin: 0 0 16px 0;
+}
+
+.simglobe-email-form {
+  display: flex;
+  gap: 10px;
+}
+
+.simglobe-email-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--p-color-border, #c4c4c4);
+  border-radius: 6px;
+  font-size: 14px;
+  background: #ffffff;
+  color: var(--p-color-text, #1a1a1a);
+}
+
+.simglobe-email-input:focus {
+  outline: none;
+  border-color: #2a7e6e;
+  box-shadow: 0 0 0 2px rgba(42, 126, 110, 0.15);
+}
+
+.simglobe-email-input::placeholder {
+  color: var(--p-color-text-secondary, #8c9196);
+}
+
+.simglobe-email-note {
+  font-size: 11px;
+  color: var(--p-color-text-secondary, #6d7175);
+  margin: 10px 0 0 0;
+}
+
+/* Email Success State */
+.simglobe-email-success {
+  text-align: center;
+  padding: 16px;
+}
+
+.simglobe-email-success svg {
+  margin-bottom: 12px;
+}
+
+.simglobe-email-success h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a6b4a;
+  margin: 0 0 8px 0;
+}
+
+.simglobe-email-success p {
+  font-size: 13px;
+  color: var(--p-color-text-secondary, #4a4a4a);
+  margin: 0;
+}
+
+.simglobe-email-success strong {
+  color: var(--p-color-text, #1a1a1a);
+}
+
+/* Hidden audio element */
+.simglobe-audio-element {
+  display: none;
+}
+
+/* Responsive adjustments for audio row */
+@media (max-width: 700px) {
+  .simglobe-audio-row {
+    flex-wrap: wrap;
+  }
+  
+  .simglobe-audio-progress {
+    width: 100%;
+    order: 3;
+    margin-top: 12px;
+  }
+  
+  .simglobe-briefing-actions {
+    flex-wrap: wrap;
+  }
+}
+
+/* Risks Table Container */
+.simglobe-risks-container {
+  background: var(--p-color-bg-surface, #ffffff);
+  border: 1px solid var(--p-color-border, #e1e1e1);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--p-shadow-100, 0 1px 0 rgba(0,0,0,0.05));
+}
+
+.simglobe-table-wrapper {
+  width: 100%;
+}
+
+/* Table Header */
+.simglobe-table-header {
+  display: grid;
+  grid-template-columns: 100px 1fr 140px 120px 140px;
+  gap: 16px;
+  padding: 12px 20px;
+  background: var(--p-color-bg-surface-secondary, #f6f6f7);
+  border-bottom: 1px solid var(--p-color-border, #e1e1e1);
+}
+
+.simglobe-table-col {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--p-color-text-secondary, #6d7175);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Table Rows */
+.simglobe-table-body {
+  min-height: 200px;
+  background: var(--p-color-bg-surface, #ffffff);
+}
+
+.simglobe-table-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 140px 120px 140px;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--p-color-border, #e1e1e1);
+  cursor: pointer;
+  transition: background 100ms ease;
+  align-items: center;
+}
+
+.simglobe-table-row:last-child {
+  border-bottom: none;
+}
+
+.simglobe-table-row:hover {
+  background: var(--p-color-bg-surface-hover, #f6f6f7);
+}
+
+/* Column Styles */
+.simglobe-col-probability {
+  display: flex;
+  align-items: center;
+}
+
+.simglobe-prob-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  height: 28px;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.simglobe-prob--high {
+  background: #fde8e6;
+  color: #c4321a;
+}
+
+.simglobe-prob--medium {
+  background: #fff5e6;
+  color: #9e6c00;
+}
+
+.simglobe-prob--low {
+  background: #e3f3ed;
+  color: #1a6b4a;
+}
+
+.simglobe-market-title {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--p-color-text, #1a1a1a);
+  line-height: 1.4;
+}
+
+.simglobe-impact-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.simglobe-impact--high {
+  background: #fde8e6;
+  color: #c4321a;
+}
+
+.simglobe-impact--medium {
+  background: #fff5e6;
+  color: #9e6c00;
+}
+
+.simglobe-impact--low {
+  background: #e3f3ed;
+  color: #1a6b4a;
+}
+
+.simglobe-category-badge {
+  font-size: 12px;
+  color: var(--p-color-text-secondary, #6d7175);
+  padding: 4px 10px;
+  background: var(--p-color-bg-surface-secondary, #f6f6f7);
+  border-radius: 4px;
+}
+
+.simglobe-volume {
+  font-size: 13px;
+  color: var(--p-color-text-secondary, #6d7175);
+}
+
+/* Empty State */
+.simglobe-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.simglobe-empty-icon {
+  color: var(--p-color-icon-secondary, #6d7175);
+  margin-bottom: 16px;
+}
+
+.simglobe-empty-state h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--p-color-text, #1a1a1a);
+  margin: 0 0 8px 0;
+}
+
+.simglobe-empty-state p {
+  font-size: 14px;
+  color: var(--p-color-text-secondary, #6d7175);
+  max-width: 360px;
+  margin: 0;
+}
+
+/* Error State */
+.simglobe-error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.simglobe-error-icon {
+  color: #c4321a;
+  margin-bottom: 16px;
+}
+
+.simglobe-error-state h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--p-color-text, #1a1a1a);
+  margin: 0 0 8px 0;
+}
+
+.simglobe-error-state p {
+  font-size: 14px;
+  color: var(--p-color-text-secondary, #6d7175);
+  margin: 0 0 4px 0;
+}
+
+.simglobe-error-hint {
+  font-size: 12px;
+  color: var(--p-color-text-secondary, #8c9196);
+  margin-top: 8px !important;
+  margin-bottom: 16px !important;
+}
+
+.simglobe-retry-btn {
+  margin-top: 16px;
+}
+
+/* Page Footer */
+.simglobe-page-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.simglobe-learn-more {
+  font-size: 13px;
+  color: var(--p-color-text-interactive, #2c6ecb);
+  text-decoration: none;
+}
+
+.simglobe-learn-more:hover {
+  text-decoration: underline;
+  color: var(--p-color-text-interactive-hover, #1a4a8a);
+}
+
+/* Main Page Buttons - Light theme overrides */
+.simglobe-main-page .simglobe-btn--primary {
+  background: #2a7e6e;
+  color: #ffffff;
+}
+
+.simglobe-main-page .simglobe-btn--primary:hover {
+  background: #227062;
+}
+
+.simglobe-main-page .simglobe-btn--secondary {
+  background: var(--p-color-bg-surface, #ffffff);
+  border: 1px solid var(--p-color-border, #c4c4c4);
+  color: var(--p-color-text, #1a1a1a);
+}
+
+.simglobe-main-page .simglobe-btn--secondary:hover {
+  background: var(--p-color-bg-surface-hover, #f6f6f7);
+  border-color: var(--p-color-border-hover, #999);
+}
+
+.simglobe-main-page .simglobe-refresh-btn {
+  color: var(--p-color-icon-secondary, #6d7175);
+}
+
+.simglobe-main-page .simglobe-refresh-btn:hover {
+  color: var(--p-color-icon, #1a1a1a);
+  background: var(--p-color-bg-surface-hover, #f6f6f7);
+}
+
+/* Loading state for light theme */
+.simglobe-main-page .simglobe-loading {
+  color: var(--p-color-text-secondary, #6d7175);
+}
+
+.simglobe-main-page .simglobe-spinner {
+  border: 2px solid var(--p-color-border, #e1e1e1);
+  border-top-color: #2a7e6e;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .simglobe-table-header,
+  .simglobe-table-row {
+    grid-template-columns: 80px 1fr 120px;
+  }
+
+  .simglobe-col-category,
+  .simglobe-col-volume {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .simglobe-page-container {
+    padding: 16px;
+  }
+
+  .simglobe-table-header,
+  .simglobe-table-row {
+    grid-template-columns: 70px 1fr;
+  }
+
+  .simglobe-col-impact {
+    display: none;
+  }
+}

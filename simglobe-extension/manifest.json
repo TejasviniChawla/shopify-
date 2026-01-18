@@ -20,6 +20,7 @@
         "components/VoiceBriefing.js",
         "components/HedgeModal.js",
         "content/sidebar-injector.js",
+        "content/main-page-injector.js",
         "content/home-widget.js",
         "content/campaigns-widget.js",
         "content/product-action.js",
@@ -39,7 +40,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["components/*", "assets/*"],
+      "resources": ["components/*", "assets/*", "assets/morning-briefing.mp3"],
       "matches": ["*://admin.shopify.com/*"]
     }
   ],

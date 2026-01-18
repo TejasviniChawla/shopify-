@@ -141,11 +141,16 @@ async function injectSidebar() {
         badge.style.display = 'none';
       }
 
-      // Click handler
+      // Click handler - navigate to main page view instead of side panel
       link.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        toggleSimGlobePanel();
+        
+        // Show main page content in center (like Markets page)
+        const { showSimGlobeMainPage } = window.SimGlobeInjectors || {};
+        if (showSimGlobeMainPage) {
+          showSimGlobeMainPage();
+        }
       });
     }
 
@@ -203,189 +208,6 @@ async function updateSidebarBadge() {
   } catch (error) {
     console.error('SimGlobe: Error updating sidebar badge:', error);
   }
-}
-
-function toggleSimGlobePanel() {
-  let panel = document.querySelector('[data-simglobe="panel"]');
-
-  if (panel) {
-    const isVisible = panel.classList.contains('simglobe-panel--visible');
-    if (isVisible) {
-      panel.classList.remove('simglobe-panel--visible');
-    } else {
-      panel.classList.add('simglobe-panel--visible');
-    }
-    return;
-  }
-
-  // Create the panel
-  panel = document.createElement('div');
-  panel.className = 'simglobe-panel simglobe-panel--visible';
-  panel.dataset.simglobe = 'panel';
-
-  panel.innerHTML = `
-    <div class="simglobe-panel-content">
-      <div class="simglobe-loading">
-        <div class="simglobe-spinner"></div>
-        <p>Loading market data...</p>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(panel);
-
-  // Load content
-  loadPanelContent(panel.querySelector('.simglobe-panel-content'));
-
-  // Close on click outside
-  document.addEventListener('click', (e) => {
-    if (!panel.contains(e.target) && !e.target.closest('[data-simglobe="sidebar"]')) {
-      panel.classList.remove('simglobe-panel--visible');
-    }
-  });
-
-  // Close on Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      panel.classList.remove('simglobe-panel--visible');
-    }
-  });
-}
-
-async function loadPanelContent(contentContainer) {
-  try {
-    const [risks, voiceBrief] = await Promise.all([
-      window.SimGlobeApi.getRisks(),
-      window.SimGlobeApi.getVoiceBrief()
-    ]);
-
-    contentContainer.innerHTML = '';
-
-    // Voice briefing / Transcript section
-    if (voiceBrief && voiceBrief.transcript) {
-      const voiceSection = document.createElement('div');
-      voiceSection.className = 'simglobe-panel-section';
-
-      voiceSection.innerHTML = `
-        <details class="voice-transcript">
-          <summary>View Transcript</summary>
-          <p>${voiceBrief.transcript}</p>
-        </details>
-      `;
-
-      contentContainer.appendChild(voiceSection);
-    }
-
-    // Risk list section
-    if (risks && risks.markets && risks.markets.length > 0) {
-      const riskSection = document.createElement('div');
-      riskSection.className = 'simglobe-panel-section';
-
-      const sectionTitle = document.createElement('h3');
-      sectionTitle.textContent = 'ACTIVE MARKET RISKS';
-      riskSection.appendChild(sectionTitle);
-
-      const riskList = document.createElement('div');
-      riskList.className = 'risk-list';
-
-      risks.markets.forEach(market => {
-        const card = createRiskCard(market);
-        riskList.appendChild(card);
-      });
-
-      riskSection.appendChild(riskList);
-      contentContainer.appendChild(riskSection);
-    }
-
-    // Hedge action button (sticky at bottom)
-    const hedgeSection = document.createElement('div');
-    hedgeSection.className = 'simglobe-panel-actions';
-
-    const hedgeBtn = document.createElement('button');
-    hedgeBtn.className = 'simglobe-btn simglobe-btn--primary';
-    hedgeBtn.textContent = 'Hedge Portfolio Risk';
-    hedgeBtn.addEventListener('click', () => {
-      const { showHedgeModal } = window.SimGlobeComponents;
-      showHedgeModal({
-        market: 'Portfolio Hedge',
-        marketId: 'portfolio',
-        amount: 1000,
-        probability: 0.65
-      });
-    });
-
-    hedgeSection.appendChild(hedgeBtn);
-    contentContainer.parentElement.appendChild(hedgeSection);
-
-  } catch (error) {
-    contentContainer.innerHTML = `
-      <div class="simglobe-error">
-        <p>Unable to load market data</p>
-        <p class="simglobe-error-detail">${error.message}</p>
-        <button class="simglobe-btn simglobe-btn--secondary" onclick="loadPanelContent(this.closest('.simglobe-panel-content'))">
-          Retry
-        </button>
-      </div>
-    `;
-  }
-}
-
-function createRiskCard(market) {
-  const prob = parseFloat(market.probability);
-  const probPercent = Math.round(prob * 100);
-
-  // Determine probability class
-  let probClass = 'risk-badge--low';
-  if (probPercent >= 70) probClass = 'risk-badge--high';
-  else if (probPercent >= 40) probClass = 'risk-badge--medium';
-
-  // Determine impact class
-  let impactClass = 'impact--low';
-  if (market.impact === 'high') impactClass = 'impact--high';
-  else if (market.impact === 'medium') impactClass = 'impact--medium';
-
-  const card = document.createElement('div');
-  card.className = 'market-risk-card';
-  card.dataset.marketId = market.id;
-
-  card.innerHTML = `
-    <div class="risk-card-header">
-      <span class="risk-badge ${probClass}">${probPercent}%</span>
-      <span class="risk-card-title">${market.title}</span>
-    </div>
-    <div class="risk-card-details">
-      <span class="impact-badge ${impactClass}">${market.impact} Impact</span>
-      <span class="risk-card-category">${market.category}</span>
-      <span class="risk-card-volume">${formatVolume(market.volume)} volume</span>
-    </div>
-  `;
-
-  card.addEventListener('click', () => {
-    const { showHedgeModal } = window.SimGlobeComponents;
-    showHedgeModal({
-      market: market.title,
-      marketId: market.id,
-      amount: calculateHedgeAmount(market),
-      probability: prob
-    });
-  });
-
-  return card;
-}
-
-function formatVolume(volume) {
-  const num = parseFloat(volume);
-  if (num >= 1000000) return '$' + (num / 1000000).toFixed(1) + 'M';
-  if (num >= 1000) return '$' + (num / 1000).toFixed(0) + 'K';
-  return '$' + num;
-}
-
-function calculateHedgeAmount(risk) {
-  const prob = parseFloat(risk.probability);
-  const baseAmount = 1000;
-  if (risk.impact === 'high') return Math.round(baseAmount * prob * 2);
-  if (risk.impact === 'medium') return Math.round(baseAmount * prob * 1.5);
-  return Math.round(baseAmount * prob);
 }
 
 // Make available globally
